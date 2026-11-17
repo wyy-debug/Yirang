@@ -1,0 +1,50 @@
+.native-history {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  margin: 12px 0;
+  background: var(--paper);
+}
+.native-history > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.native-history p,
+.native-history small {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.native-history details {
+  border-top: 1px solid var(--line);
+  padding: 10px 0;
+}
+.native-history summary {
+  font-size: var(--fs-md);
+  cursor: pointer;
+}
+.native-history summary input {
+  margin-right: 8px;
+}
+.native-history-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.native-history-pair pre {
+  max-height: 280px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 12px;
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  border-radius: var(--r-md);
+}
+.native-history-pair pre:first-child {
+  background: var(--surface);
+}
+.native-history-pair pre:last-child {
+  background: var(--surface);
+}

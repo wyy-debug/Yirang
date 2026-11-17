@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "minHostApi": 2,
+  "id": "yirang.remote-status",
+  "name": "服务主机状态",
+  "version": "1.0.0",
+  "runtime": {"kind": "node", "entry": "server.mjs"},
+  "ui": {"entry": "ui/index.html"},
+  "configSchema": {"type": "object", "properties": {}},
+  "actions": [{"name": "get_state", "title": "读取状态", "effect": "read", "inputSchema": {"type": "object"}, "outputSchema": {"type": "object"}}],
+  "widgets": [{"id": "status", "name": "主机状态", "sizes": [1, 2, 4, 8], "entry": "ui/index.html"}]
+}

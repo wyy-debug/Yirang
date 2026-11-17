@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "id": "example.micro-meeting-todos",
+  "name": "会议纪要 → 待办（自定义页面示例）",
+  "version": "0.1.0",
+  "minHostApi": 3,
+  "runtime": {
+    "kind": "micro"
+  },
+  "ui": {
+    "entry": "ui/index.html"
+  },
+  "capabilities": [
+    {
+      "name": "extract",
+      "title": "整理待办",
+      "prompt": "prompts/extract.md",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "meeting": {
+            "type": "string"
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "meeting",
+          "note"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "todos",
+          "summary"
+        ],
+        "properties": {
+          "todos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "task",
+                "owner",
+                "due",
+                "priority"
+              ],
+              "properties": {
+                "task": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "due": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "priority": {
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      },
+      "evaluation": {
+        "todos": {
+          "key": "task",
+          "fields": {
+            "task": "exact",
+            "owner": "exact",
+            "due": "exact",
+            "priority": "exact"
+          },
+          "order": "ignore"
+        },
+        "summary": "review"
+      },
+      "materials": {
+        "min": 1,
+        "max": 5
+      },
+      "outputs": [
+        {
+          "kind": "csv",
+          "from": "todos",
+          "name": "{meeting}-待办.csv"
+        },
+        {
+          "kind": "md",
+          "name": "{meeting}-待办.md"
+        }
+      ],
+      "timeoutMs": 120000
+    }
+  ],
+  "evolution": {
+    "autoPropose": true,
+    "autoPublish": "never"
+  }
+}

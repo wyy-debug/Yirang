@@ -1,0 +1,167 @@
+/* Workbench chrome stays outside the document and uses one feedback stack. */
+.desktop-shell .workbench-feedback {
+  position: absolute;
+  top: 64px;
+  left: calc(var(--sidebar-width, 0px) + 18px);
+  right: 18px;
+  z-index: 66;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: min(32vh, 280px);
+  overflow: auto;
+  pointer-events: none;
+  scrollbar-width: thin;
+}
+.desktop-shell:has(> .desktop-tabs-bar) .workbench-feedback {
+  top: 106px;
+}
+.desktop-shell .workbench-feedback:empty {
+  display: none;
+}
+.desktop-shell .workbench-feedback > :is(.banner, .connection-recovery) {
+  position: static;
+  inset: auto;
+  margin: 0;
+  width: 100%;
+  max-height: none;
+  flex-shrink: 0;
+  pointer-events: auto;
+  border: 1px solid var(--line, var(--line));
+  border-radius: var(--r-md);
+  box-shadow: 0 5px 20px #2435500b;
+  padding: 10px 14px;
+}
+.desktop-shell .workbench-feedback .banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.desktop-shell .workbench-feedback .banner > span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.desktop-shell .workbench-feedback .banner > button {
+  flex-shrink: 0;
+  padding: 4px 8px;
+  background: transparent;
+  border-color: transparent;
+}
+.desktop-shell .workbench-feedback .banner > button:last-child {
+  margin-left: auto;
+}
+.desktop-shell .canvas-board-tools > .canvas-drawing-toggle {
+  width: auto;
+  gap: 6px;
+  padding: 7px 10px;
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+.desktop-shell .canvas-group-strip {
+  top: 20px;
+  right: 20px;
+  max-width: 250px;
+  z-index: 12;
+  pointer-events: auto;
+}
+.desktop-shell .region-navigator > .desk-popover-panel {
+  top: calc(100% + 8px);
+  right: 0;
+  width: 250px;
+  max-height: min(55vh, 440px);
+  overflow: auto;
+  padding: 6px;
+  background: var(--paper, var(--paper));
+  border-radius: var(--r-lg);
+}
+.desktop-shell .region-navigator > .desk-popover-panel button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: var(--r-sm);
+  box-shadow: none;
+  background: transparent;
+  text-align: left;
+}
+.desktop-shell .region-navigator > .desk-popover-panel button:hover {
+  background: var(--accent-soft, var(--surface));
+}
+.desktop-shell .region-navigator > .desk-popover-panel button > span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.desktop-shell .region-navigator > .desk-popover-panel small {
+  margin-left: auto;
+}
+.canvas-region-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms;
+}
+.canvas-region-header:is(:hover, :focus-within) .canvas-region-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+.canvas-region-header.is-collapsed .canvas-region-actions {
+  display: none;
+}
+.desktop-shell .sidebar-more-tools > summary {
+  padding: 8px 10px;
+  color: var(--muted, var(--muted));
+  font-size: var(--fs-xs);
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+.desktop-shell .sidebar-more-tools > summary:hover {
+  background: var(--surface, var(--surface));
+}
+.desktop-shell.sidebar-collapsed .sidebar-more-tools > summary {
+  font-size: 0;
+  text-align: center;
+}
+.desktop-shell.sidebar-collapsed .sidebar-more-tools > summary::after {
+  content: '···';
+  font-size: var(--fs-xl);
+}
+.desktop-shell .desktop-tabs-bar {
+  flex-shrink: 0;
+}
+.desktop-shell .app-viewer-bar {
+  min-height: 42px;
+  height: 42px;
+  padding: 5px 20px;
+}
+.desktop-shell .app-viewer-identity strong {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--muted, var(--muted));
+}
+.desktop-shell .app-viewer-identity .app-viewer-icon {
+  width: 22px;
+  height: 22px;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+}
+.desktop-shell .app-controls-row > small {
+  flex: 1;
+  color: var(--muted, var(--muted));
+}
+.desktop-shell .app-controls-row {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .canvas-region-actions {
+    transition: none;
+  }
+}

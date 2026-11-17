@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="tile" x1="18" y1="2" x2="46" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCFDFF"/>
+      <stop offset="1" stop-color="#EAF0F8"/>
+    </linearGradient>
+    <linearGradient id="back" x1="24" y1="13" x2="44" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DBEBFF"/>
+      <stop offset="1" stop-color="#A6CAFA"/>
+    </linearGradient>
+    <linearGradient id="front" x1="22" y1="22" x2="40" y2="51" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5AA3F6"/>
+      <stop offset="1" stop-color="#2875DE"/>
+    </linearGradient>
+    <filter id="lift" x="7" y="18" width="48" height="41" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#285993" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="18" fill="url(#tile)" stroke="#E3EAF3"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="17" stroke="white" stroke-opacity=".85"/>
+  <rect x="20" y="13" width="29" height="29" rx="7" transform="rotate(8 34.5 27.5)" fill="url(#back)" stroke="white" stroke-opacity=".9"/>
+  <g filter="url(#lift)">
+    <rect x="13" y="22" width="36" height="28" rx="7" fill="url(#front)"/>
+    <rect x="13.5" y="22.5" width="35" height="27" rx="6.5" stroke="white" stroke-opacity=".25"/>
+    <rect x="18.5" y="27.5" width="4" height="16" rx="2" fill="white" fill-opacity=".6"/>
+    <rect x="27" y="27.5" width="16" height="9" rx="2.5" fill="white"/>
+    <rect x="27" y="40" width="11" height="2.5" rx="1.25" fill="white" fill-opacity=".75"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+.desktop-mark {
+  display: block;
+  flex: none;
+  object-fit: contain;
+  border-radius: 23%;
+  user-select: none;
+  pointer-events: none;
+}
+.desktop-shell .welcome .welcome-symbol,
+.desktop-shell .sidebar-brand .desk-logo {
+  background: none;
+  box-shadow: none;
+}
+.desktop-shell .workspace-choice-icon {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+.desktop-shell .workspace-transfer-icon {
+  display: inline-flex;
+  margin-bottom: 12px;
+  vertical-align: middle;
+}

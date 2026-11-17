@@ -1,0 +1,96 @@
+.render-performance {
+  position: fixed;
+  left: 200px;
+  bottom: 18px;
+  width: 304px;
+  z-index: 14000;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 8px 30px #18243b16;
+  color: var(--ink);
+  font:
+    11px -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  contain: layout paint;
+}
+.render-performance header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  cursor: move;
+  touch-action: none;
+}
+.render-performance header strong {
+  font-size: var(--fs-sm);
+}
+.render-performance header small {
+  color: var(--muted);
+}
+.render-performance header button {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  padding: 1px 4px;
+  font-size: var(--fs-xl);
+}
+.render-performance-stats {
+  padding: 6px 12px;
+}
+.render-performance-stats > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  line-height: 24px;
+}
+.render-performance-stats span {
+  color: var(--muted);
+}
+.render-performance-stats b {
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.render-performance-stats small {
+  font-size: var(--fs-xs);
+  font-weight: 400;
+}
+.render-performance footer {
+  display: flex;
+  gap: 6px;
+  padding: 6px 12px;
+}
+.render-performance button,
+.render-performance-open {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--muted);
+  padding: 4px 9px;
+  font-size: var(--fs-xs);
+  cursor: pointer;
+}
+.render-performance p {
+  padding: 0 12px 10px;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+}
+.render-performance-open {
+  position: fixed;
+  left: 200px;
+  bottom: 18px;
+  z-index: 14000;
+  box-shadow: 0 4px 14px #18243b12;
+}
+@media (max-width: 650px) {
+  .render-performance,
+  .render-performance-open {
+    left: 12px;
+  }
+}

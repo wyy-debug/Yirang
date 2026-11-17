@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "ai_desktop": {
+      "type": "stdio",
+      "command": "./runtime/node.exe",
+      "args": ["--disable-warning=ExperimentalWarning", "./dist/server.mjs"],
+      "cwd": "./"
+    }
+  }
+}

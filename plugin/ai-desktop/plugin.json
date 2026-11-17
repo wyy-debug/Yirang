@@ -1,0 +1,28 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ai-desktop",
+  "version": "0.64.4",
+  "description": "Codex 对话旁的小桌面：放置、编辑、整理材料，将选区引用到原消息框。",
+  "author": {
+    "name": "Yirang"
+  },
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "interface": {
+        "displayName": "一壤 · Yirang",
+        "shortDescription": "在旁边整理材料，在 Codex 原消息框对话",
+        "longDescription": "原生文件工作桌面：新建、拖入、转换、编辑并保存回同一对象。支持文本、XLSX 和 Word/PPT 选区引用与受限回写，图片批注、PDF 阅读、文件正文搜索，目录连接与源文件同步。提供表格筛选和条件格式、Word 内容增删、PPT 页面管理和元素拖拽，以及草稿合并、分块导入、存储管理和离线恢复工具。桌面小工具支持参数表单、原生文件提取、图表、逐文件批处理、条件审批、组合组件和局部重跑，Python 源码可独立复制并管理版本。Web 工作区提供页签与收藏、快照阅读与批注、版本对比、表单草稿、原会话浏览任务和恢复，并可编辑 HTML/CSS/JS 原生文件与隔离预览。执行与协作由 Codex 原对话推进；宿主未提供的用量显示为不可用。采用非微软兼容编辑器，复杂格式有明确边界。开发版本，未运行功能测试或宿主验收。",
+        "developerName": "Yirang",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive",
+          "Read",
+          "Write"
+        ],
+        "logo": "./assets/yirang.png",
+        "composerIcon": "./assets/yirang.png"
+      }
+    }
+  }
+}

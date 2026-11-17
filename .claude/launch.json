@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bot-desk",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["apps/bot-desk/server.mjs"],
+      "port": 4870
+    }
+  ]
+}

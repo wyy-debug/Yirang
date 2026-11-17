@@ -1,0 +1,483 @@
+.xlsx-editor {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  overflow: hidden;
+  color: var(--ink);
+}
+.xlsx-structure {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+  padding: 9px 16px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.xlsx-structure-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.xlsx-structure-group + div {
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+}
+.xlsx-structure button {
+  font-size: var(--fs-xs);
+  padding: 6px 8px;
+}
+.xlsx-structure label {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.xlsx-structure input {
+  font-size: var(--fs-xs);
+  min-height: 29px;
+  box-sizing: border-box;
+  width: 125px;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+.xlsx-structure input[type='number'] {
+  width: 58px;
+}
+.xlsx-structure:disabled {
+  opacity: 0.55;
+}
+.xlsx-structure-hint {
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  padding: 5px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.xlsx-structure-hint span {
+  color: var(--success);
+}
+.xlsx-format {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+  padding: 9px 16px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+.xlsx-format-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 10px;
+  border-right: 1px solid var(--line);
+}
+.xlsx-format-group:last-child {
+  border-right: 0;
+}
+.xlsx-format button,
+.xlsx-format select,
+.xlsx-format input {
+  font-size: var(--fs-xs);
+  min-height: 29px;
+  box-sizing: border-box;
+}
+.xlsx-format button {
+  padding: 4px 8px;
+  min-width: 28px;
+}
+.xlsx-format button[aria-pressed='true'] {
+  color: #19704c;
+  background: color-mix(in srgb, var(--paper) 80%, #9ccab1);
+  border-color: #619e7b;
+}
+.xlsx-format label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.xlsx-format input[type='color'] {
+  width: 28px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.xlsx-format input:not([type='color']) {
+  width: 150px;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+.xlsx-format select {
+  max-width: 160px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 4px;
+}
+.xlsx-format:disabled {
+  opacity: 0.55;
+}
+.xlsx-calculation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-xs);
+  color: var(--success);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.xlsx-calculation small {
+  color: var(--muted);
+  margin-left: auto;
+}
+.xlsx-calculation .calculation-warning {
+  color: var(--warning);
+}
+.xlsx-grid td.calculation-error {
+  color: #a35237;
+}
+.xlsx-grid td.calculation-error::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  border-top: 6px solid #be7052;
+  border-right: 6px solid transparent;
+}
+.xlsx-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 94%, #15784a);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.xlsx-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 190px;
+  flex: 1;
+}
+.xlsx-brand > span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: #19704c;
+  color: white;
+  font-size: var(--fs-2xl);
+  font-weight: 650;
+}
+.xlsx-brand > div {
+  min-width: 0;
+}
+.xlsx-brand strong {
+  font-size: var(--fs-lg);
+  display: block;
+  overflow-wrap: anywhere;
+}
+.xlsx-brand small {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  display: block;
+  margin-top: 5px;
+}
+.xlsx-tools {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.xlsx-tools button {
+  font-size: var(--fs-xs);
+  padding: 7px 10px;
+}
+.xlsx-tools .primary {
+  background: #19704c;
+  color: white;
+  border-color: #19704c;
+}
+.xlsx-formula {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  background: var(--paper);
+}
+.xlsx-formula form {
+  width: 85px;
+  flex-shrink: 0;
+}
+.xlsx-formula input,
+.xlsx-formula select {
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: inherit;
+  font:
+    12px ui-monospace,
+    Consolas,
+    monospace;
+  min-height: 32px;
+  padding: 5px 9px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.xlsx-formula form input {
+  width: 100%;
+}
+.xlsx-formula > input {
+  flex: 1;
+}
+.xlsx-formula > span {
+  color: var(--muted);
+  font-size: var(--fs-xl);
+}
+.xlsx-formula select {
+  max-width: 100px;
+  font-size: var(--fs-xs);
+}
+.xlsx-formula button {
+  font-size: var(--fs-xs);
+  padding: 6px 9px;
+}
+.xlsx-notices {
+  padding: 8px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-xs);
+  line-height: 1.7;
+  flex-shrink: 0;
+  max-height: 155px;
+  overflow: auto;
+}
+.xlsx-notices p {
+  margin: 3px 0;
+}
+.xlsx-notices .error-text {
+  color: var(--warning);
+}
+.xlsx-notices button {
+  font-size: var(--fs-xs);
+  margin: 5px 7px 0 0;
+  padding: 5px 8px;
+}
+.xlsx-notices > div span {
+  display: block;
+  color: var(--muted);
+}
+.xlsx-grid {
+  position: relative;
+  flex: 1;
+  min-height: 150px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--paper);
+}
+.xlsx-grid table {
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: separate;
+  width: max-content;
+  min-width: 100%;
+  font-size: 12px;
+  cursor: cell;
+}
+.xlsx-grid th {
+  background: color-mix(in srgb, var(--paper) 93%, #568269);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  text-align: center;
+  user-select: none;
+}
+.xlsx-grid thead {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  height: 28px;
+}
+.xlsx-grid tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  min-width: 52px;
+  border-right: 1px solid var(--line);
+}
+.xlsx-grid thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+}
+.xlsx-grid th,
+.xlsx-grid td {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 3px 7px;
+  box-sizing: border-box;
+}
+.xlsx-grid td {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+  outline: 0;
+  position: relative;
+}
+.xlsx-grid td.selected {
+  background: color-mix(in srgb, var(--paper) 85%, #73ac8b) !important;
+}
+.xlsx-grid td.active {
+  outline: 2px solid #278359;
+  outline-offset: -2px;
+}
+.xlsx-grid td.modified::after {
+  content: '';
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  border-top: 6px solid #ce9c38;
+  border-left: 6px solid transparent;
+}
+.xlsx-grid td.readonly {
+  color: var(--muted);
+}
+.xlsx-loading {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  padding: 12px 18px;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.xlsx-empty {
+  padding: 55px 24px;
+  font-size: var(--fs-sm);
+  line-height: 1.9;
+  color: var(--muted);
+}
+.xlsx-tabs {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: 0 12px;
+  flex-shrink: 0;
+  background: var(--paper);
+}
+.xlsx-tabs nav {
+  display: flex;
+  gap: 2px;
+  overflow: auto;
+  min-width: 0;
+  max-width: 100%;
+  padding: 4px 0;
+}
+.xlsx-tabs button {
+  font-size: var(--fs-xs);
+  padding: 9px 16px;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  background: transparent;
+}
+.xlsx-tabs button.chosen {
+  color: var(--success);
+  font-weight: 650;
+  border-bottom-color: #278359;
+  background: color-mix(in srgb, var(--paper) 94%, #73ac8b);
+}
+.xlsx-paging {
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.xlsx-paging button {
+  font-size: var(--fs-xs);
+  padding: 4px 8px;
+}
+.xlsx-paging small {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.xlsx-limits {
+  border-top: 1px solid var(--line);
+  padding: 8px 18px;
+  font-size: var(--fs-xs);
+  line-height: 1.8;
+  color: var(--muted);
+  flex-shrink: 0;
+  max-height: 160px;
+  overflow: auto;
+}
+.xlsx-limits summary {
+  cursor: pointer;
+}
+.xlsx-limits p {
+  margin: 8px 0 0;
+}
+[data-theme='dark'] .xlsx-grid td.active {
+  outline-color: #72b28b;
+}
+[data-theme='dark'] .xlsx-tabs button.chosen {
+  color: #8cc4a1;
+}
+[data-theme='dark'] .xlsx-notices .error-text {
+  color: #e3a68a;
+}
+.xlsx-extra-controls {
+  font-size: var(--fs-sm);
+  padding: 7px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line-strong);
+}
+.xlsx-extra-controls > summary {
+  cursor: pointer;
+}
+.xlsx-extra-controls fieldset {
+  margin-top: 8px;
+}
+.xlsx-extra-controls input[type='checkbox'] {
+  width: auto;
+}
+.xlsx-extra-controls small {
+  display: block;
+  width: 100%;
+  color: var(--muted);
+}

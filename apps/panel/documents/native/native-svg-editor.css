@@ -1,0 +1,500 @@
+.native-svg-editor {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 380px;
+  overflow: hidden;
+  border: 1px solid var(--line, var(--line-strong));
+  border-radius: var(--r-lg);
+  background: var(--surface, var(--paper));
+  color: var(--ink, var(--ink));
+  font:
+    12px/1.5 -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+.native-svg-editor .native-svg-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 42px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line, var(--line));
+  background: var(--surface);
+}
+.native-svg-editor button,
+.native-svg-editor select,
+.native-svg-editor input {
+  font: inherit;
+  box-sizing: border-box;
+}
+.native-svg-editor button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid var(--line, var(--line-strong));
+  border-radius: var(--r-sm);
+  background: var(--surface, var(--paper));
+  color: var(--ink, var(--ink));
+  cursor: pointer;
+}
+.native-svg-editor button:disabled,
+.native-svg-editor select:disabled,
+.native-svg-editor fieldset:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+.native-svg-editor button:not(:disabled):hover {
+  background: var(--surface);
+  border-color: #bdcfe5;
+}
+.native-svg-editor button:focus-visible,
+.native-svg-editor input:focus-visible,
+.native-svg-editor textarea:focus-visible,
+.native-svg-editor select:focus-visible {
+  outline: 2px solid var(--accent, var(--accent));
+  outline-offset: 2px;
+}
+.native-svg-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-right: 5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.native-svg-add {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.native-svg-editor .native-svg-add select {
+  width: auto;
+  min-width: 70px;
+  height: 28px;
+  padding: 3px 7px;
+  border: 1px solid var(--line, var(--line-strong));
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: inherit;
+}
+.native-svg-editor .native-svg-zoom {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.native-svg-editor .native-svg-zoom span {
+  min-width: 42px;
+  text-align: center;
+  color: var(--muted, var(--muted));
+}
+.native-svg-editor .native-svg-zoom button {
+  width: 28px;
+  padding: 4px;
+  background: transparent;
+  border-color: transparent;
+}
+.native-svg-workspace {
+  display: flex;
+  flex: 1;
+  min-height: 300px;
+  overflow: hidden;
+}
+.native-svg-viewport {
+  position: relative;
+  flex: 1;
+  min-width: 120px;
+  min-height: 300px;
+  overflow: auto;
+  background-color: var(--surface);
+  background-image: radial-gradient(#cfd4dc 0.75px, transparent 0.75px);
+  background-size: 14px 14px;
+}
+.native-svg-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100%;
+  width: max-content;
+  height: max-content;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.native-svg-canvas {
+  position: relative;
+  flex: none;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #f6f7f8 25%, transparent 25%),
+    linear-gradient(-45deg, #f6f7f8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f6f7f8 75%),
+    linear-gradient(-45deg, transparent 75%, #f6f7f8 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
+  box-shadow:
+    0 2px 8px #16283a10,
+    0 18px 42px #16283a10;
+}
+.native-svg-canvas > svg {
+  display: block;
+  overflow: hidden;
+  color: #1d1d1f;
+  font-family: Arial, sans-serif;
+  isolation: isolate;
+}
+.native-svg-canvas [data-native-svg-key] {
+  cursor: pointer;
+}
+.native-svg-selection {
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid var(--accent);
+  box-sizing: border-box;
+  z-index: 1;
+  min-width: 2px;
+  min-height: 2px;
+}
+.native-svg-selection i {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  box-sizing: border-box;
+  background: var(--paper);
+  border: 1px solid var(--accent);
+  border-radius: 1px;
+}
+.native-svg-selection i:nth-child(1) {
+  left: -3px;
+  top: -3px;
+}
+.native-svg-selection i:nth-child(2) {
+  right: -3px;
+  top: -3px;
+}
+.native-svg-selection i:nth-child(3) {
+  left: -3px;
+  bottom: -3px;
+}
+.native-svg-selection i:nth-child(4) {
+  right: -3px;
+  bottom: -3px;
+}
+.native-svg-refresh {
+  position: sticky;
+  display: block;
+  bottom: 10px;
+  left: 12px;
+  width: max-content;
+  padding: 4px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-xl);
+  background: var(--glass);
+  box-shadow: 0 2px 5px #1725380b;
+  color: var(--muted, var(--muted));
+  font-size: var(--fs-xs);
+}
+.native-svg-inspector {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 236px;
+  max-width: 42%;
+  overflow: auto;
+  border-left: 1px solid var(--line, var(--line));
+  background: var(--surface, var(--paper));
+}
+.native-svg-inspector-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 12px 7px;
+  font-weight: 600;
+}
+.native-svg-inspector-heading small {
+  font-weight: 400;
+  color: var(--muted, var(--muted));
+  font-variant-numeric: tabular-nums;
+}
+.native-svg-elements {
+  flex: 0 0 auto;
+  max-height: 155px;
+  overflow: auto;
+  padding: 0 6px 8px;
+  border-bottom: 1px solid var(--line, var(--line));
+}
+.native-svg-editor .native-svg-elements button {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 29px;
+  min-height: 29px;
+  margin: 1px 0;
+  padding: 4px 7px;
+  border-color: transparent;
+  background: transparent;
+  font-size: var(--fs-xs);
+  text-align: left;
+}
+.native-svg-editor .native-svg-elements button > span:nth-child(2) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.native-svg-editor .native-svg-elements button small {
+  flex: none;
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+}
+.native-svg-editor .native-svg-elements button.is-selected {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+.native-svg-shape-symbol {
+  width: 18px;
+  flex: none;
+  text-align: center;
+  font-size: var(--fs-xl);
+  color: var(--muted);
+}
+.native-svg-elements p {
+  padding: 0 7px;
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+}
+.native-svg-properties {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 12px 12px;
+}
+.native-svg-properties .native-svg-inspector-heading {
+  padding: 11px 0 1px;
+}
+.native-svg-hint {
+  margin: 0;
+  color: var(--muted, var(--muted));
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+}
+.native-svg-editor .native-svg-properties fieldset {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 9px 8px;
+  min-width: 0;
+  margin: 5px 0;
+  padding: 0;
+  border: 0;
+}
+.native-svg-editor .native-svg-properties label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+}
+.native-svg-editor .native-svg-properties label.is-wide {
+  grid-column: 1/-1;
+}
+.native-svg-editor .native-svg-properties label > span {
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+}
+.native-svg-editor .native-svg-properties input:not([type='color']),
+.native-svg-editor .native-svg-properties select,
+.native-svg-editor .native-svg-properties textarea {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 28px;
+  margin: 0;
+  padding: 5px 7px;
+  border: 1px solid var(--line, var(--line-strong));
+  border-radius: var(--r-sm);
+  box-sizing: border-box;
+  background: var(--surface-subtle);
+  color: inherit;
+  font:
+    11px/1.45 'Cascadia Code',
+    Consolas,
+    monospace;
+  resize: vertical;
+}
+.native-svg-editor .native-svg-properties textarea {
+  min-height: 56px;
+  max-height: 200px;
+}
+.native-svg-input {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+.native-svg-editor .native-svg-input input[type='color'] {
+  flex: none;
+  width: 24px;
+  height: 28px;
+  min-width: 0;
+  padding: 2px;
+  border: 1px solid var(--line, var(--line-strong));
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  cursor: pointer;
+}
+.native-svg-property-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.native-svg-editor .native-svg-property-actions button {
+  flex: 1;
+  padding: 5px;
+  font-size: var(--fs-xs);
+}
+.native-svg-editor button.native-svg-primary {
+  border-color: transparent;
+  background: var(--accent, var(--accent));
+  color: #fff;
+}
+.native-svg-editor button.native-svg-primary:not(:disabled):hover {
+  background: var(--accent);
+}
+.native-svg-editor button.native-svg-delete {
+  align-self: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border-color: transparent;
+  background: transparent;
+  color: #b25151;
+  font-size: var(--fs-xs);
+}
+.native-svg-selection-hint,
+.native-svg-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 16px;
+  text-align: center;
+  color: var(--muted, var(--muted));
+  font-size: var(--fs-xs);
+  line-height: 1.7;
+}
+.native-svg-selection-hint .desk-icon,
+.native-svg-empty .desk-icon {
+  color: var(--muted);
+}
+.native-svg-empty {
+  min-height: 220px;
+}
+.native-svg-empty strong {
+  font-weight: 500;
+  color: var(--muted);
+}
+.native-svg-message {
+  flex: none;
+  padding: 7px 12px;
+  background: var(--surface-subtle);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.native-svg-properties .native-svg-message {
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  margin: 0;
+}
+.native-svg-error {
+  color: #aa4141;
+  background: var(--surface-subtle);
+  border-color: var(--danger-line);
+}
+.native-svg-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 12px;
+  border-top: 1px solid var(--line, var(--line));
+  color: var(--muted, var(--muted));
+  background: var(--surface-subtle);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 750px) {
+  .native-svg-editor .native-svg-toolbar {
+    gap: 5px;
+    padding: 7px 8px;
+  }
+  .native-svg-title {
+    font-size: var(--fs-xs);
+  }
+  .native-svg-inspector {
+    flex-basis: 210px;
+    max-width: 48%;
+  }
+  .native-svg-properties {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+  .native-svg-status {
+    font-size: var(--fs-xs);
+  }
+}
+.native-svg-selection-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--line, var(--line));
+  background: var(--surface-subtle);
+}
+.native-svg-selection-tools > span {
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+  margin-right: 4px;
+}
+.native-svg-selection-tools > div {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  padding: 0 5px;
+  border-left: 1px solid var(--line, var(--line));
+}
+.native-svg-editor .native-svg-selection-tools button {
+  font-size: var(--fs-xs);
+  min-height: 24px;
+  padding: 3px 6px;
+}
+.native-svg-selection-union {
+  position: absolute;
+  pointer-events: none;
+  border: 1px dashed #007aff99;
+  box-sizing: border-box;
+  background: #007aff05;
+}
+.native-svg-viewport:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.native-svg-editor .native-svg-elements button[aria-selected='true'] .native-svg-shape-symbol {
+  color: var(--accent-hover);
+}

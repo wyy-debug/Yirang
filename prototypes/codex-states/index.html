@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>一壤 · Codex 状态演示</title>
+<link rel="stylesheet" href="../../apps/electron/design-tokens.css"><link rel="stylesheet" href="demo.css">
+<body><nav class="sidebar"><strong>一壤</strong><p>我的工作桌面</p><button class="selected">桌面</button><button>文件目录</button><button>应用与组件</button><small>交互演示 · 模拟数据<br>不会启动 CLI 或修改文件</small></nav>
+<main><header>我的工作桌面 <span>4 份材料</span></header><div class="canvas"><article><div class="paper"><small>项目资料</small><h2>Crash 排查与汇报</h2><p>整理现场信息、分析问题<br>生成可编辑架构图和汇报 PPT</p><hr><p>输入材料</p><p>架构图.png<br>Crash 报告.md</p></div><p>Crash 报告.md</p></article><article><div class="diagram"><h3>系统架构</h3><div>用户端</div><i>↓</i><div>API 网关</div><i>↓</i><div>业务服务 · 数据存储</div></div><p>架构图.png</p></article></div><footer><b>流程演示</b><div id="steps"></div><button id="play">自动播放</button><p>可点击状态切换。审批、暂停、重试和结果按钮仅改变演示状态。</p></footer></main>
+<aside><header><strong>Codex</strong><span id="connection">已连接</span><button id="new" title="新事情">＋</button></header><details id="worklist"><summary id="summary"></summary><div id="jobs"></div></details><section id="feed" aria-live="polite"></section><form id="composer"><div id="target">当前：架构图与汇报</div><textarea placeholder="补充要求，或交办下一件事…" aria-label="消息"></textarea><div class="tools"><span>GPT · 高</span><button type="button" id="pause">暂停当前工作</button><button type="submit" class="primary">发送 ↑</button></div></form></aside><script defer src="demo.js"></script></body></html>
+

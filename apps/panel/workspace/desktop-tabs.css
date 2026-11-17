@@ -1,0 +1,186 @@
+.desktop-tabs-bar {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--line, var(--line));
+  background: var(--paper, var(--paper));
+  min-width: 0;
+  z-index: 12;
+}
+.desktop-tabs {
+  display: flex;
+  gap: 4px;
+  overflow: auto;
+  flex: 1;
+  min-width: 0;
+  scrollbar-width: thin;
+}
+.desktop-tabs-bar button {
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  padding: 7px 12px;
+  color: var(--ink, var(--ink));
+  font: inherit;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.desktop-tabs button {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+.desktop-tabs-bar button:hover {
+  background: var(--surface);
+}
+.desktop-tabs button[aria-current='page'] {
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+}
+.desktop-tabs-bar button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.desktop-tabs-bar :is(button, input):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.desktop-tab-menu,
+.desktop-tab-editor,
+.desktop-tab-error {
+  position: absolute;
+  right: 16px;
+  top: calc(100% + 6px);
+  background: var(--paper, var(--paper));
+  border: 1px solid var(--line, var(--line-strong));
+  box-shadow: 0 8px 28px #24375020;
+  border-radius: var(--r-md);
+  padding: 8px;
+  max-width: calc(100vw - 40px);
+}
+.desktop-tab-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-height: 60vh;
+  overflow: auto;
+  min-width: 180px;
+}
+.desktop-tab-menu button {
+  text-align: left;
+}
+.desktop-tab-menu .desktop-tab-destructive,
+.desktop-delete-confirmation .desktop-tab-destructive {
+  color: var(--danger);
+}
+.rename-overlay.desktop-delete-confirmation {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.desktop-delete-confirmation .rename-dialog {
+  width: min(440px, 100%);
+}
+.desktop-tab-editor {
+  display: flex;
+  gap: 5px;
+}
+.desktop-tab-editor input {
+  min-width: 80px;
+  width: 180px;
+  border: 1px solid #c4cedd;
+  border-radius: var(--r-sm);
+  padding: 6px;
+  font: inherit;
+}
+.desktop-tab-error {
+  color: var(--danger);
+  max-width: 440px;
+  font-size: var(--fs-md);
+  white-space: normal;
+}
+.canvas-folder-path {
+  position: absolute;
+  left: 16px;
+  top: 80px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100% - 32px);
+  overflow: auto;
+  padding: 5px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+.canvas-folder-path button {
+  border: 0;
+  background: none;
+  color: #345b91;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 4px;
+}
+.canvas-folder-path button[aria-current='page'] {
+  font-weight: 600;
+  color: var(--ink);
+}
+.canvas-region-header select {
+  max-width: 80px;
+  font-size: var(--fs-xs);
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  border-radius: var(--r-sm);
+  padding: 3px;
+  color: var(--ink-2);
+}
+.canvas-folder-preview {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  border-radius: var(--r-lg);
+}
+.canvas-folder-preview span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.canvas-region-header.is-collapsed select,
+.canvas-region-header.is-collapsed button:not(:first-child) {
+  display: none;
+}
+
+.desktop-tabs .desktop-tab-add,
+.desktop-tab-options {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  padding: 5px;
+  flex-shrink: 0;
+  color: var(--ink-2);
+}
+.desktop-tab-divider {
+  align-self: center;
+  height: 20px;
+  width: 1px;
+  flex-shrink: 0;
+  margin: 0 6px;
+  background: var(--line, var(--surface-2));
+}

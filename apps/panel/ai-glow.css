@@ -1,0 +1,172 @@
+/* Apple Intelligence style glow for materials the AI is looking at or working on.
+   The ring lives outside the target edge and follows the target's own corner radius
+   via --ai-r, so it hugs the shape instead of floating around it. The gradient
+   references --ai-angle directly on the animated pseudo-element: an intermediate
+   custom property would not re-resolve. The spectrum is deliberately pastel and
+   slow (7s/turn): saturated colors or a fast spin read as a pinwheel beam rather
+   than the soft flowing shimmer this effect is modeled on. */
+@property --ai-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+@keyframes ai-spin {
+  to {
+    --ai-angle: 360deg;
+  }
+}
+/* Each target declares its own corner radius so the ring stays parallel to the edge. */
+.material-object {
+  --ai-r: var(--r-md);
+}
+.material-object.selected {
+  --ai-r: var(--r-lg);
+}
+.canvas-region-fill.file-ai-target {
+  --ai-r: var(--r-lg);
+}
+.canvas-region-header.file-ai-target {
+  --ai-r: var(--r-md);
+}
+:is(.app-widget, .desktop-preview-window):is(.file-ai-target, [data-ai-chosen]) {
+  --ai-r: var(--r-xl);
+}
+.react-flow__node:is(.file-ai-target, [data-ai-chosen]) .material-object,
+.material-object:is(.is-ai-active, .is-ai-linked),
+:is(.app-widget, .desktop-preview-window, .canvas-region-fill, .canvas-region-header):is(
+  .file-ai-target,
+  [data-ai-chosen]
+) {
+  --ai-speed: 7s;
+  isolation: isolate;
+  position: relative;
+}
+.material-object.is-ai-active {
+  --ai-speed: 3.2s;
+}
+/* Writing reads as the same glow, just more energetic: faster spin, a slightly
+   thicker ring and a breathing bloom, so reading and writing stay recognizably one effect. */
+.material-object.is-ai-writing {
+  --ai-speed: 1.8s;
+}
+.material-object.is-ai-writing::before {
+  padding: 3.5px;
+}
+@keyframes ai-breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.material-object.is-ai-writing::after {
+  animation:
+    ai-spin var(--ai-speed) linear infinite,
+    ai-breathe 1.6s ease-in-out infinite;
+}
+.canvas-region-fill:is(.file-ai-target, [data-ai-chosen]) {
+  position: absolute;
+}
+.canvas-region-header:is(.file-ai-target, [data-ai-chosen]) {
+  position: absolute;
+}
+/* Regions are large and mostly empty, so the ring alone gets lost: tint the area and strengthen the ring and bloom. */
+.canvas-region-fill:is(.file-ai-target, [data-ai-chosen]) {
+  background: color-mix(in srgb, #8f9bff 9%, transparent) !important;
+}
+.canvas-region-fill:is(.file-ai-target, [data-ai-chosen])::before {
+  padding: 3.5px !important;
+}
+.canvas-region-fill:is(.file-ai-target, [data-ai-chosen])::after {
+  opacity: 0.9 !important;
+}
+.canvas-region-header.file-ai-target {
+  color: var(--accent);
+}
+/* The glow replaces the default selection outline. */
+:is(.file-ai-target, .react-flow__node[data-ai-chosen]) .object-paper,
+.material-object:is(.is-ai-active, .is-ai-linked) .object-paper {
+  border-color: transparent !important;
+  outline: none !important;
+}
+/* Crisp bright ring hugging the outside of the edge. */
+.react-flow__node:is(.file-ai-target, [data-ai-chosen]) .material-object::before,
+.material-object:is(.is-ai-active, .is-ai-linked)::before,
+:is(.app-widget, .desktop-preview-window, .canvas-region-fill, .canvas-region-header):is(
+    .file-ai-target,
+    [data-ai-chosen]
+  )::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: calc(var(--ai-r, var(--r-lg)) + 3px);
+  padding: 3px;
+  background: conic-gradient(
+    from var(--ai-angle),
+    #6fb1ff,
+    #8f9bff,
+    #b18cff,
+    #f2a3dc,
+    #ffc39b,
+    #7fe1d8,
+    #6fb1ff
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: ai-spin var(--ai-speed, 7s) linear infinite;
+}
+/* Wide soft bloom: colored outer box-shadows orbiting with --ai-angle. Outer shadows
+   never paint under the box, so translucent targets such as canvas regions stay clean inside. */
+.react-flow__node:is(.file-ai-target, [data-ai-chosen]) .material-object::after,
+.material-object:is(.is-ai-active, .is-ai-linked)::after,
+:is(.app-widget, .desktop-preview-window, .canvas-region-fill, .canvas-region-header):is(
+    .file-ai-target,
+    [data-ai-chosen]
+  )::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: var(--ai-r, var(--r-lg));
+  box-shadow:
+    calc(cos(var(--ai-angle) + 0deg) * 9px) calc(sin(var(--ai-angle) + 0deg) * 9px) 22px 1px #6fb1ff,
+    calc(cos(var(--ai-angle) + 90deg) * 9px) calc(sin(var(--ai-angle) + 90deg) * 9px) 22px 1px
+      #b18cff,
+    calc(cos(var(--ai-angle) + 180deg) * 9px) calc(sin(var(--ai-angle) + 180deg) * 9px) 22px 1px
+      #f2a3dc,
+    calc(cos(var(--ai-angle) + 270deg) * 9px) calc(sin(var(--ai-angle) + 270deg) * 9px) 22px 1px
+      #ffc39b;
+  opacity: 0.55;
+  animation: ai-spin var(--ai-speed, 7s) linear infinite;
+}
+[data-theme='dark'] .react-flow__node:is(.file-ai-target, [data-ai-chosen]) .material-object::after,
+[data-theme='dark'] .material-object:is(.is-ai-active, .is-ai-linked)::after,
+[data-theme='dark']
+  :is(.app-widget, .desktop-preview-window, .canvas-region-fill, .canvas-region-header):is(
+    .file-ai-target,
+    [data-ai-chosen]
+  )::after {
+  opacity: 0.5;
+  mix-blend-mode: screen;
+}
+@media (prefers-reduced-motion: reduce) {
+  .react-flow__node:is(.file-ai-target, [data-ai-chosen]) .material-object:is(::before, ::after),
+  .material-object:is(.is-ai-active, .is-ai-linked):is(::before, ::after),
+  :is(.app-widget, .desktop-preview-window, .canvas-region-fill, .canvas-region-header):is(
+      .file-ai-target,
+      [data-ai-chosen]
+    ):is(::before, ::after) {
+    animation: none;
+  }
+}

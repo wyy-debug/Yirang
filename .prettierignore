@@ -1,0 +1,7 @@
+node_modules/
+dist/
+release/
+output/
+test-results/
+package-lock.json
+packages/contracts/version.ts

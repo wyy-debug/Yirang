@@ -1,0 +1,360 @@
+.canvas-board-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+  touch-action: none;
+  contain: paint;
+  isolation: isolate;
+}
+.canvas-board-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.canvas-board-svg .canvas-mark {
+  cursor: move;
+  touch-action: none;
+}
+.canvas-board-layer.is-disabled .canvas-mark,
+.canvas-board-layer.is-disabled .canvas-link {
+  pointer-events: none !important;
+}
+.canvas-tool-rectangle,
+.canvas-tool-diamond,
+.canvas-tool-ellipse,
+.canvas-tool-arrow,
+.canvas-tool-line,
+.canvas-tool-pen {
+  cursor: crosshair;
+}
+.canvas-tool-text {
+  cursor: text;
+}
+.canvas-tool-note {
+  cursor: copy;
+}
+.canvas-tool-eraser,
+.canvas-tool-eraser .canvas-mark,
+.canvas-tool-eraser .canvas-link {
+  cursor: cell !important;
+}
+.canvas-board-toolbar {
+  position: absolute;
+  z-index: 7;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  max-width: calc(100% - 36px);
+  color: var(--ink, var(--ink));
+}
+.canvas-board-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--glass, #fffffff2);
+  box-shadow:
+    0 5px 24px #202b3c0c,
+    0 1px 3px #202b3c06;
+  backdrop-filter: blur(20px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.desktop-shell .canvas-board-tools > button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--ink, var(--ink-2));
+  padding: 7px;
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+.desktop-shell .canvas-board-tools > button:hover {
+  background: var(--surface, var(--surface));
+}
+.desktop-shell .canvas-board-tools > button.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+}
+.canvas-board-tools kbd {
+  display: none;
+}
+.canvas-board-tools .is-active kbd {
+  color: #796bc4;
+}
+.canvas-tools-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--line, var(--surface-2));
+  margin: 0 3px;
+  flex-shrink: 0;
+}
+.canvas-current-style {
+  width: 19px;
+  height: 19px;
+  display: block;
+  border: 3px solid;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px #0001;
+}
+.canvas-style-panel {
+  position: absolute;
+  right: 75px;
+  top: calc(100% + 10px);
+  width: 246px;
+  padding: 16px;
+  background: var(--glass, #fffffff5);
+  border: 1px solid var(--line, var(--line));
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-raised, 0 14px 36px #202b3c18);
+  backdrop-filter: blur(24px);
+}
+.canvas-style-panel > small {
+  display: block;
+  margin: 0 0 9px;
+  color: var(--muted, var(--muted));
+  font-size: var(--fs-xs);
+}
+.canvas-style-colors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.desktop-shell .canvas-style-colors > button,
+.canvas-style-colors > input {
+  border: 1px solid #8791a526;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.desktop-shell .canvas-style-colors > button.is-current {
+  outline: 2px solid #8478e3;
+  outline-offset: 3px;
+}
+.canvas-style-colors > input {
+  width: 23px;
+  height: 23px;
+  overflow: hidden;
+  appearance: none;
+  background: transparent;
+}
+.canvas-style-colors > input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.canvas-style-colors > input::-webkit-color-swatch {
+  border: 0;
+  border-radius: 50%;
+}
+.desktop-shell .canvas-style-colors > button.is-transparent {
+  background:
+    linear-gradient(135deg, transparent 44%, #e38898 47%, #e38898 53%, transparent 56%),
+    var(--paper, #fff) !important;
+}
+.canvas-style-widths {
+  display: flex;
+  gap: 6px;
+}
+.desktop-shell .canvas-style-widths > button {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  height: 30px;
+  border: 1px solid var(--line, var(--line));
+  background: transparent;
+  padding: 4px;
+  border-radius: var(--r-sm);
+}
+.canvas-style-widths span {
+  display: block;
+  width: 24px;
+  background: currentColor;
+  border-radius: var(--r-sm);
+}
+.desktop-shell .canvas-style-widths > button.is-current {
+  color: #6d5dd3;
+  border-color: #ada1ec;
+  background: #e7e3ff55;
+}
+.canvas-style-panel p {
+  margin: 13px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+}
+.canvas-board-hint {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 28px);
+  padding: 8px 13px;
+  border: 1px solid var(--line, var(--line));
+  background: var(--glass, #fffffff0);
+  border-radius: var(--r-xl);
+  box-shadow: 0 3px 16px #202b3c08;
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+  white-space: nowrap;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+}
+.canvas-selection-tools {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 7px;
+  pointer-events: auto;
+  background: var(--glass, #fffffff5);
+  color: var(--ink, var(--ink));
+  border: 1px solid var(--line, var(--line));
+  border-radius: var(--r-md);
+  box-shadow: 0 5px 24px #202b3c12;
+  backdrop-filter: blur(20px);
+  white-space: nowrap;
+  z-index: 2;
+}
+.canvas-selection-tools > span {
+  padding: 0 7px;
+  font-size: var(--fs-xs);
+  color: var(--muted, var(--muted));
+}
+.desktop-shell .canvas-selection-tools > button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--r-sm);
+  color: var(--ink, var(--ink));
+}
+.canvas-selection-tools > button svg {
+  width: 16px;
+  height: 16px;
+}
+.desktop-shell .canvas-selection-tools > button.is-danger:hover {
+  color: #c84a61;
+  background: #ffe7ed;
+}
+.canvas-selection-tools > input {
+  width: 150px;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 6px;
+  font: inherit;
+  font-size: var(--fs-xs);
+  outline: none;
+}
+.canvas-text-editor {
+  position: absolute;
+  pointer-events: auto;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #a399e7;
+  border-radius: var(--r-sm);
+  box-shadow: 0 5px 24px #29234c18;
+  max-width: min(720px, calc(100% - 24px));
+  max-height: calc(100% - 24px);
+  overflow: auto;
+  touch-action: auto;
+}
+.canvas-text-editor textarea {
+  width: 100%;
+  flex: 1;
+  resize: vertical;
+  padding: 14px 14px 8px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  line-height: 1.45;
+  font-family: inherit;
+  outline: none;
+  box-shadow: none;
+  min-width: 0;
+}
+.desktop-shell .canvas-text-editor textarea:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+.canvas-text-editor footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 6px 9px;
+  border-top: 1px solid #00000008;
+  font-size: var(--fs-xs);
+}
+.canvas-text-editor footer > span {
+  margin-right: auto;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.desktop-shell .canvas-text-editor footer button {
+  padding: 5px 9px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: var(--fs-xs);
+}
+.desktop-shell .canvas-text-editor footer .canvas-text-done {
+  background: #7664d7;
+  color: white;
+  border-radius: var(--r-sm);
+}
+[data-theme='dark'] .canvas-board-tools {
+  border-color: var(--line);
+}
+[data-theme='dark'] .canvas-board-tools .is-active kbd {
+  color: #aa9fd4;
+}
+@media (max-width: 850px) {
+  .canvas-board-toolbar {
+    top: 12px;
+    max-width: calc(100% - 20px);
+  }
+  .canvas-board-tools {
+    gap: 2px;
+    padding: 5px;
+    border-radius: var(--r-md);
+  }
+  .desktop-shell .canvas-board-tools > button {
+    width: 32px;
+    height: 34px;
+    padding: 6px;
+  }
+  .canvas-tools-divider {
+    margin: 0;
+  }
+  .canvas-style-panel {
+    right: 0;
+  }
+  .canvas-selection-tools > input {
+    width: 120px;
+  }
+}

@@ -1,0 +1,146 @@
+.native-preview header,
+.connected-directories nav,
+.connected-directories form,
+.native-merge article {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.native-preview header input[type='number'] {
+  width: 65px;
+}
+.native-preview canvas {
+  display: block;
+  background: var(--paper);
+  margin: auto;
+  max-width: none;
+}
+.native-preview {
+  padding: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+}
+.native-merge {
+  padding: 12px;
+  margin: 12px 0;
+  background: var(--surface);
+  border: 1px solid #e1d5ad;
+  border-radius: var(--r-md);
+}
+.native-merge article {
+  display: block;
+  border-top: 1px solid #d6cbb2;
+  padding-top: 10px;
+}
+.native-merge pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 220px;
+  overflow: auto;
+  font-size: var(--fs-sm);
+}
+.connected-directories {
+  padding: 20px;
+  overflow: auto;
+}
+.connected-directories form > input {
+  flex: 1;
+  min-width: 220px;
+}
+.connected-directories table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.connected-directories td,
+.connected-directories th {
+  border-bottom: 1px solid var(--line-strong);
+  padding: 10px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.connected-directories aside {
+  padding: 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+.office-editor details fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.office-editor details input[type='number'] {
+  width: 65px;
+}
+.office-slide button {
+  touch-action: none;
+}
+.native-file-details > section {
+  margin-bottom: 16px;
+}
+
+.backup-policy {
+  padding: 20px 24px;
+  margin: 0 0 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface-subtle);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.backup-policy h3,
+.backup-policy p {
+  width: 100%;
+  margin: 0;
+}
+.backup-policy label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: var(--fs-sm);
+}
+.backup-policy input[type='number'] {
+  width: 72px;
+}
+.backup-policy small {
+  color: var(--muted);
+}
+.workflow-tool-schema {
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--muted);
+}
+.workflow-tool-schema pre {
+  max-height: 220px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.pdf-batch-ocr input[type='number'] {
+  width: 65px;
+}
+.pdf-batch-ocr .settings-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pdf-batch-ocr textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 110px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 12px;
+  font: 13px/1.7 inherit;
+}
+.pdf-batch-ocr p {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}

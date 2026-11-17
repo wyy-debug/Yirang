@@ -1,0 +1,332 @@
+.office-editor {
+  padding: 16px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 480px;
+}
+.office-editor > header,
+.office-editor nav,
+.office-paragraphs header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.office-editor > header > div {
+  margin-right: auto;
+}
+.office-editor small {
+  display: block;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.office-editor select,
+.office-editor input {
+  padding: 5px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+}
+.office-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.office-paragraphs section {
+  padding: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+}
+.office-paragraphs section.selected {
+  border-color: var(--accent);
+}
+.office-paragraphs header {
+  font-size: var(--fs-xs);
+  margin-bottom: 8px;
+}
+.office-paragraphs input {
+  width: 58px;
+}
+.office-run {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 5px;
+}
+.office-run textarea {
+  min-height: 44px;
+  width: 100%;
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  font:
+    14px/1.7 Georgia,
+    'Microsoft YaHei',
+    serif;
+  resize: vertical;
+}
+.office-run textarea[readonly] {
+  background: var(--surface);
+}
+.office-message {
+  background: #fff6df;
+  padding: 10px;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+}
+.office-message p,
+.office-editor footer p {
+  margin: 3px 0;
+}
+.office-editor footer {
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.office-slide {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 650px;
+  background: white;
+  border: 1px solid #d9dfd4;
+  overflow: hidden;
+}
+.office-slide > button {
+  position: absolute;
+  overflow: hidden;
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+  padding: 2px;
+  min-width: 0;
+  font-size: 12px;
+  text-align: left;
+}
+.office-slide > button.selected {
+  outline: 2px solid var(--accent);
+}
+.office-slide span {
+  display: block;
+}
+.office-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.office-geometry {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  border: 1px solid var(--line-strong);
+}
+.office-geometry input {
+  width: 80px;
+}
+
+.office-editor {
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--r-lg);
+}
+.office-editor select,
+.office-editor input {
+  border-color: #d2d2d7;
+  border-radius: var(--r-sm);
+}
+.office-run {
+  flex-wrap: wrap;
+}
+.office-run textarea {
+  flex-basis: 70%;
+  min-width: 240px;
+}
+.office-run label {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: var(--fs-xs);
+}
+.office-slide .office-slide-run {
+  display: inline;
+  white-space: pre-wrap;
+}
+.office-geometry {
+  border-radius: var(--r-md);
+  border-color: #d2d2d7;
+}
+.office-geometry label {
+  font-size: var(--fs-sm);
+}
+.office-document {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.office-document-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: #fafafacc;
+  backdrop-filter: blur(20px);
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.office-document-toolbar > span {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.office-document-toolbar fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.office-document-toolbar input[type='number'] {
+  width: 70px;
+}
+.office-document-toolbar input[type='color'],
+.office-run input[type='color'] {
+  width: 30px;
+  height: 28px;
+  padding: 2px;
+}
+.office-document-toolbar button[aria-pressed='true'] {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.office-document-paper {
+  align-self: center;
+  width: min(100%, 860px);
+  box-sizing: border-box;
+  padding: 48px 56px;
+  min-height: 600px;
+  background: var(--paper);
+  box-shadow: 0 4px 24px #00000009;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+}
+.office-document-flow {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 240px;
+  resize: vertical;
+  border: 0;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+  font:
+    16px/1.9 Georgia,
+    'Microsoft YaHei',
+    serif;
+  white-space: pre-wrap;
+  tab-size: 4;
+}
+.office-document-flow:focus {
+  box-shadow: none;
+}
+.office-document-preserved {
+  padding: 12px;
+  margin: 14px 0;
+  background: var(--surface);
+  border-radius: var(--r-md);
+  border-left: 3px solid #d2d2d7;
+}
+.office-document-preserved p {
+  white-space: pre-wrap;
+}
+.office-document-formatted p {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  min-height: 1.8em;
+}
+.office-editor > details fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.office-editor > details fieldset input[type='number'] {
+  width: 85px;
+}
+@media (max-width: 700px) {
+  .office-document-paper {
+    padding: 24px;
+  }
+  .office-document-toolbar {
+    position: static;
+  }
+}
+.office-layout-preview {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 12px;
+  margin: 7px 0;
+}
+.office-layout-preview > button {
+  border-radius: var(--r-md);
+}
+.office-layout-preview > small {
+  display: inline;
+  margin-left: 12px;
+  color: var(--muted);
+}
+.office-layout-preview nav {
+  margin: 12px 0;
+}
+.office-layout-pages {
+  padding: 20px;
+  overflow: auto;
+  max-height: 65vh;
+  background: var(--surface);
+  border-radius: var(--r-md);
+}
+.office-layout-pages canvas {
+  display: block;
+  margin: auto;
+  box-shadow: 0 3px 20px #27375014;
+  background: var(--paper);
+}
+.pdf-ocr {
+  padding: 12px;
+  margin: 10px 0;
+  background: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.pdf-ocr textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  margin: 10px 0;
+  font-family: inherit;
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  resize: vertical;
+}
+.pdf-ocr button,
+.pdf-ocr select {
+  margin-right: 8px;
+}
+.pdf-ocr p,
+.pdf-ocr small {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}

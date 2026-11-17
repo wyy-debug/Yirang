@@ -1,0 +1,11 @@
+.work-report-notifications { margin-left: 0; }
+.desktop-notification-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
+.desktop-notification-actions .app-notification-bar { margin-left: 0; }
+.work-report-list { width: min(360px, calc(100vw - 32px)); max-height: min(520px, calc(100vh - 130px)); }
+.work-report-notice { border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+.work-report-list .app-notification-item { border-bottom: 0; }
+.work-report-notice small[data-tone="running"] { color: var(--accent); }
+.work-report-notice small[data-tone="blocked"], .work-report-notice small[data-tone="ask"] { color: #a46320; }
+.work-report-files { display: flex; flex-direction: column; gap: 4px; padding: 0 12px; }
+.desktop-tabs .work-report-files button { display: flex; align-items: center; gap: 7px; text-align: left; background: var(--surface); }
+.work-report-files span { overflow-wrap: anywhere; min-width: 0; }

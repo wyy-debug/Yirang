@@ -1,0 +1,411 @@
+.intent-workbench {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 80;
+  font: 12px/1.5 system-ui;
+  color: var(--ink);
+  max-width: calc(100vw - 40px);
+}
+.intent-work-bar {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 5px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: 0 8px 28px #26375116;
+}
+.intent-workbench button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  color: inherit;
+  padding: 7px 10px;
+}
+.intent-workbench button:hover {
+  background: var(--surface);
+  color: var(--accent);
+}
+.intent-workbench .intent-ask {
+  color: var(--accent);
+  font-weight: 600;
+}
+.intent-ask small {
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 7px;
+}
+.intent-work-list {
+  width: 410px;
+  max-width: calc(100vw - 40px);
+  max-height: min(55vh, 600px);
+  overflow: auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  margin-bottom: 10px;
+  padding: 12px;
+  box-shadow: 0 16px 42px #26375118;
+}
+.intent-empty {
+  padding: 18px 6px 10px;
+}
+.intent-empty strong { font-size: 14px; }
+.intent-empty p { margin: 5px 0 12px; color: var(--muted); line-height: 1.6; }
+.intent-empty button { background: var(--accent); color: #fff; }
+.intent-work-list article.tone-warning,
+.intent-work-list article.tone-danger {
+  border-left: 3px solid var(--warning);
+  padding-left: 10px;
+}
+.intent-work-list article.tone-danger {
+  border-left-color: var(--danger);
+}
+/* Running work and fresh results are cards so they stand apart from older records. */
+.intent-work-list article.tone-running,
+.intent-work-list article.fresh.tone-done {
+  margin-top: 8px;
+  padding: 10px 10px 4px;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+}
+.intent-work-list article.fresh.tone-done {
+  border-color: transparent;
+  background: var(--success-soft);
+}
+.intent-work-list article.tone-running + article,
+.intent-work-list article.fresh.tone-done + article {
+  margin-top: 8px;
+}
+.intent-work-meta {
+  margin: 5px 0 2px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.intent-work-actions > :is(time, .intent-fresh-tag) {
+  padding: 0 6px;
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  color: var(--muted);
+}
+.intent-work-actions > .intent-fresh-tag {
+  font-weight: 650;
+  color: var(--success);
+}
+.intent-record:not(.tone-done) .intent-work-actions > .intent-fresh-tag {
+  color: var(--warning);
+}
+.intent-workbench .intent-work-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 14px 0 4px;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  color: var(--muted);
+}
+.intent-work-group span {
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  font-variant-numeric: tabular-nums;
+}
+.intent-work-tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.intent-workbench .intent-clear {
+  padding: 5px 10px;
+  color: var(--muted);
+}
+.intent-cleared {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0 8px;
+  padding: 4px 4px 4px 10px;
+  border-radius: var(--r-md);
+  background: var(--success-soft);
+  line-height: 1.5;
+}
+.intent-workbench .intent-cleared button {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.intent-record-trigger { display: inline-flex; align-items: center; gap: 7px; }
+.intent-record-badges {
+  display: inline-flex;
+  gap: 4px;
+}
+.intent-record-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 7px;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  line-height: 18px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.intent-record-badge.tone-running {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.intent-record-badge.tone-done {
+  color: var(--paper);
+  background: var(--success);
+}
+.intent-record-badge.tone-warning {
+  color: var(--warning);
+  background: var(--warning-soft);
+}
+.intent-work-notice {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: min(380px, calc(100vw - 40px));
+  padding: 5px 5px 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: 0 10px 30px #26375118;
+}
+.intent-notice-mark {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--paper);
+  background: var(--success);
+}
+.intent-work-notice:not(.tone-done) .intent-notice-mark {
+  background: var(--warning);
+}
+.intent-notice-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+.intent-notice-text strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.intent-notice-text small {
+  flex-shrink: 0;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.intent-workbench .intent-work-notice button {
+  flex-shrink: 0;
+  padding: 5px 9px;
+}
+.intent-workbench .intent-work-notice .intent-notice-open {
+  color: var(--accent);
+  font-weight: 600;
+}
+.intent-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.intent-work-actions { align-items: center; justify-content: space-between; }
+.intent-workbench button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.intent-work-list > header,
+.intent-work-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+/* Chromium keeps sticky boxes inside the scroller padding, so offset it to reach the edge. */
+.intent-work-list > header {
+  position: sticky;
+  top: -12px;
+  z-index: 1;
+  margin: -12px -12px 0;
+  padding: 8px 8px 8px 12px;
+  background: var(--paper);
+}
+.intent-work-list article {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.intent-work-heading strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.intent-state {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 8px;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
+  color: var(--success);
+  background: var(--success-soft);
+}
+.intent-state::before,
+.intent-record-badge.tone-running::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.intent-record.tone-running .intent-state {
+  color: var(--accent);
+  background: var(--paper);
+}
+.intent-record.fresh.tone-done .intent-state {
+  background: var(--paper);
+}
+.intent-record.tone-warning .intent-state {
+  color: var(--warning);
+  background: var(--warning-soft);
+}
+.intent-record.tone-danger .intent-state {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+.intent-work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px -6px;
+}
+.intent-workbench .intent-result {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+  margin-top: 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  background: var(--surface);
+}
+.intent-result span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.intent-result small { color: var(--muted); }
+.intent-workbench .intent-dismiss {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  padding: 4px 8px;
+}
+.intent-object-status {
+  position: absolute;
+  top: -29px;
+  left: 12px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 4px 9px;
+  border: 1px solid #d9e6fc;
+  border-radius: var(--r-lg);
+  background: var(--surface-subtle);
+  color: var(--accent);
+  font: 11px/1.4 system-ui;
+  cursor: pointer;
+  box-shadow: 0 3px 10px #1629420a;
+}
+.intent-object-status > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.intent-object-status.waiting {
+  color: var(--warning);
+  background: var(--surface);
+}
+.intent-object-status.ready {
+  color: #418164;
+  background: var(--surface);
+}
+
+.app-viewer-widgets {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--surface-subtle);
+  border-bottom: 1px solid var(--line);
+}
+.app-viewer-widgets > button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px;
+  cursor: pointer;
+}
+/* Narrow bars keep the counts and drop the label; the button keeps its accessible name. */
+@media (max-width: 950px) {
+  .intent-record-trigger.has-badges > .intent-record-label {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .intent-work-list,
+  .intent-work-notice {
+    animation: intent-in 0.16s ease-out;
+  }
+  .intent-record-badge.tone-done {
+    animation: intent-pop 0.3s ease-out;
+  }
+  .intent-record.tone-running .intent-state::before,
+  .intent-record-badge.tone-running::before {
+    animation: intent-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes intent-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes intent-pop {
+    from {
+      transform: scale(0.8);
+    }
+  }
+  @keyframes intent-pulse {
+    50% {
+      opacity: 0.3;
+    }
+  }
+}

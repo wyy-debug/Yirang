@@ -1,0 +1,19 @@
+.codex-question-card {
+  margin: 16px 0; padding: 16px; border: 1px solid var(--line, #e3e3e6);
+  border-radius: 18px; background: var(--paper, #fff); color: var(--ink, #171717);
+  font: inherit; min-width: 0;
+}
+.codex-question-card .question-work { margin: 0 0 12px; font-size: 12px; color: var(--muted); }
+.codex-question-card fieldset { min-width: 0; margin: 0 0 16px; padding: 0; border: 0; }
+.codex-question-card legend { padding: 0; margin-bottom: 10px; font-size: 14px; font-weight: 600; line-height: 1.6; }
+.codex-question-card .question-choice { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; cursor: pointer; line-height: 1.6; overflow-wrap: anywhere; }
+.codex-question-card .question-choice input { flex: 0 0 18px; width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--ink, #171717); }
+.codex-question-card .question-choice strong { font-size: 13px; font-weight: 600; }
+.codex-question-card .question-description { font-size: 13px; margin-left: 6px; color: var(--muted, #666); }
+.codex-question-card details { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.codex-question-card summary { cursor: pointer; }
+.codex-question-card textarea, .codex-question-card input[type=password] { box-sizing: border-box; width: 100%; margin-top: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: inherit; resize: vertical; }
+.codex-question-card .question-submit { width: 100%; min-height: 36px; border: 0; border-radius: 999px; background: var(--ink, #171717); color: var(--paper, #fff); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.codex-question-card .question-submit:disabled { opacity: .45; cursor: default; }
+.codex-question-card .question-error { font-size: 12px; color: var(--danger, #b42318); overflow-wrap: anywhere; }
+.codex-question-card :focus-visible { outline: 2px solid var(--accent, #3478f6); outline-offset: 3px; }

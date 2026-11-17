@@ -1,0 +1,88 @@
+.desktop-arrange-menu {
+  padding-top: 5px;
+  color: var(--ink);
+  font:
+    12px/1.4 -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Microsoft YaHei',
+    sans-serif;
+}
+.desktop-arrange-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 9px 8px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--muted);
+}
+.desktop-arrange-label > span {
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.desktop-shell .desktop-arrange-menu button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 35px;
+  box-sizing: border-box;
+  padding: 8px 9px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  white-space: nowrap;
+  font: inherit;
+  cursor: pointer;
+}
+.desktop-shell .desktop-arrange-menu button:hover:enabled {
+  background: var(--accent-soft, var(--surface));
+  color: var(--accent, var(--accent));
+}
+.desktop-shell .desktop-arrange-menu button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.desktop-shell .desktop-arrange-menu button:focus-visible {
+  outline: 2px solid var(--accent, var(--accent));
+  outline-offset: -2px;
+}
+.desktop-arrange-align {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  margin: 4px 0 5px;
+  padding: 5px 0;
+  border-block: 1px solid var(--line, var(--line));
+}
+.desktop-shell .desktop-arrange-align button {
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 2px;
+  font-size: var(--fs-xs);
+}
+.desktop-arrange-history {
+  display: flex;
+  gap: 3px;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--line, var(--line));
+}
+.desktop-shell .desktop-arrange-history button {
+  justify-content: center;
+  gap: 5px;
+  font-size: var(--fs-xs);
+}
+.desktop-arrange-history button > span {
+  font-size: var(--fs-xl);
+  line-height: 1;
+}
+.desktop-arrange-hint {
+  margin: 6px 9px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+}

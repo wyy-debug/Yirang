@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "id": "example.micro-weekly-report",
+  "name": "周报汇总（零代码示例）",
+  "aliases": [
+    "周报",
+    "周报工具"
+  ],
+  "version": "0.1.0",
+  "minHostApi": 3,
+  "runtime": {
+    "kind": "micro"
+  },
+  "capabilities": [
+    {
+      "name": "summarize",
+      "title": "生成周报",
+      "prompt": "prompts/summarize.md",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "week": {
+            "type": "string",
+            "title": "周次"
+          }
+        },
+        "required": [
+          "week"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rows",
+          "summary"
+        ],
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "project",
+                "owner",
+                "status",
+                "hours",
+                "note"
+              ],
+              "properties": {
+                "project": {
+                  "type": "string"
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "done",
+                    "doing",
+                    "blocked"
+                  ]
+                },
+                "hours": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      },
+      "evaluation": {
+        "rows": {
+          "key": "project",
+          "fields": {
+            "project": "exact",
+            "owner": "exact",
+            "status": "exact",
+            "hours": {
+              "tolerance": 0.5
+            },
+            "note": "ignore"
+          },
+          "order": "ignore"
+        },
+        "summary": "review"
+      },
+      "materials": {
+        "min": 1,
+        "max": 10
+      },
+      "outputs": [
+        {
+          "kind": "xlsx",
+          "from": "rows",
+          "name": "周报-{week}.xlsx"
+        },
+        {
+          "kind": "docx",
+          "name": "周报-{week}.docx"
+        }
+      ],
+      "timeoutMs": 120000
+    }
+  ],
+  "examples": "examples/",
+  "evolution": {
+    "autoPropose": true,
+    "autoPublish": "never"
+  }
+}

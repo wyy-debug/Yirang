@@ -1,0 +1,1844 @@
+/* One window and one navigation system; confirmations remain separate dialogs. */
+.electron-mode {
+  --canvas: var(--paper);
+  --canvas-dot: transparent;
+  --sidebar: var(--surface-subtle);
+  --workspace-nav-width: 184px;
+  --workspace-header-height: 54px;
+  --chat-toggle-space: 16px;
+  --shadow: 0 5px 18px #2020260a, 0 1px 3px #20202606;
+  font-family: var(--font);
+}
+.electron-mode:has(.desktop-shell.sidebar-collapsed) {
+  --workspace-nav-width: 60px;
+}
+.electron-mode.conversation-closed {
+  --chat-toggle-space: 136px;
+}
+.electron-mode .desktop-shell {
+  --sidebar-width: var(--workspace-nav-width);
+  padding-left: var(--sidebar-width);
+  background: var(--paper);
+  container-type: inline-size;
+  container-name: workspace;
+}
+.electron-mode .desktop-shell.sidebar-collapsed {
+  --sidebar-width: 60px;
+}
+.electron-mode .desk-rail {
+  width: var(--sidebar-width);
+  gap: 9px;
+  padding: 12px 10px;
+  background: var(--surface-subtle);
+  border-right: 1px solid var(--line);
+  backdrop-filter: none;
+  z-index: 60;
+}
+.electron-mode .sidebar-brand {
+  height: 30px;
+  gap: 8px;
+  padding: 0 5px;
+  margin-bottom: 9px;
+}
+.electron-mode .sidebar-brand strong {
+  font-size: var(--fs-md);
+  letter-spacing: 0;
+  font-weight: 600;
+}
+.electron-mode .sidebar-brand :is(.desk-logo, .desktop-mark) {
+  width: 25px;
+  height: 25px;
+}
+.electron-mode .sidebar-command {
+  display: none;
+}
+.electron-mode .desk-rail nav {
+  gap: 18px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.electron-mode .desk-rail .sidebar-section {
+  gap: 2px;
+}
+.electron-mode .sidebar-section > small {
+  font-size: var(--fs-xs);
+  letter-spacing: 0;
+  padding: 7px 10px;
+  color: var(--muted);
+}
+.electron-mode .desktop-shell .desk-rail button {
+  width: 100%;
+  height: 34px;
+  min-height: 34px;
+  justify-content: flex-start;
+  gap: 9px;
+  padding: 7px 10px;
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+.electron-mode .desktop-shell .desk-rail button .desk-icon {
+  width: 16px;
+  height: 16px;
+}
+.electron-mode .desktop-shell .desk-rail button.is-current {
+  background: var(--surface-2);
+  color: var(--accent);
+  box-shadow: none;
+  font-weight: 550;
+}
+.electron-mode .desktop-shell .desk-rail button:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+.electron-mode .rail-bottom {
+  margin-top: auto;
+  gap: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.electron-mode .sidebar-collapsed .sidebar-brand {
+  padding: 0;
+  justify-content: center;
+}
+.electron-mode .sidebar-collapsed .sidebar-brand strong,
+.electron-mode .sidebar-collapsed .sidebar-section > small,
+.electron-mode .sidebar-collapsed .desk-rail button > span {
+  display: none;
+}
+.electron-mode .sidebar-collapsed .desk-rail {
+  padding: 12px 7px;
+}
+.electron-mode .sidebar-collapsed .desk-rail button {
+  width: 44px;
+  height: 36px;
+  justify-content: center;
+  padding: 8px;
+}
+.electron-mode .desk-toolbar {
+  min-height: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  padding: 7px var(--chat-toggle-space) 7px 16px;
+  gap: 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: none;
+  z-index: 60;
+}
+.electron-mode .desk-heading {
+  padding: 0;
+  border: 0;
+  flex: none;
+  max-width: 28%;
+}
+.electron-mode .workspace-title {
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px 0;
+}
+.electron-mode .workspace-title strong {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.electron-mode .desk-heading > small,
+.electron-mode .desk-zoom,
+.electron-mode .toolbar-separator {
+  display: none;
+}
+.electron-mode .sidebar-toggle {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border: 0;
+  border-radius: var(--r-sm);
+  padding: 5px;
+  color: var(--muted);
+  background: transparent;
+}
+.electron-mode .desk-page-location {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin-right: auto;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+.electron-mode .desk-page-location > span {
+  color: #d0d0d5;
+}
+.electron-mode .desk-page-location strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 450;
+}
+.electron-mode .desk-page-location i {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: #c69244;
+}
+.electron-mode .desk-toolbar-actions {
+  gap: 6px;
+  margin-left: auto;
+}
+.electron-mode .desktop-shell .desk-toolbar-actions > button,
+.electron-mode .desk-toolbar-actions > .desk-popover > button {
+  height: 30px;
+  min-width: 30px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  box-shadow: none;
+}
+.electron-mode .desktop-shell .desk-toolbar-actions > button:hover,
+.electron-mode .desk-toolbar-actions > .desk-popover > button:hover {
+  background: var(--surface);
+}
+.electron-mode .desktop-shell .creation-popover > button {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.electron-mode .desktop-shell .canvas {
+  background: var(--paper);
+}
+.electron-mode .react-flow__background {
+  display: none;
+}
+.electron-mode .object-paper {
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow);
+}
+.electron-mode .material-object.selected .object-paper {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.electron-mode .file-badge {
+  filter: saturate(0.75);
+}
+.electron-mode .canvas-meta {
+  bottom: 14px;
+  left: 18px;
+  right: 18px;
+}
+.electron-mode .canvas-view-controls {
+  border-color: var(--line);
+  box-shadow: none;
+}
+.electron-mode .material-dock {
+  bottom: 56px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: 0 5px 20px #1919210e;
+}
+.electron-mode .material-dock > button,
+.electron-mode .material-dock > .desk-popover > button {
+  height: 30px;
+  padding: 5px 9px;
+  font-size: var(--fs-xs);
+}
+.electron-mode .desktop-shell .material-dock > .reference-button {
+  height: 31px;
+  padding: 5px 12px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: transparent;
+  box-shadow: none;
+}
+.electron-mode .desktop-shell .material-dock > .reference-button:hover {
+  background: var(--accent-hover);
+}
+.electron-mode .object-activity-badge {
+  background: var(--paper);
+  color: var(--muted);
+  border-color: var(--line);
+}
+.electron-mode
+  .has-workspace-page
+  :is(.canvas-board-toolbar, .canvas-meta, .canvas-group-strip, .desk-empty) {
+  display: none;
+}
+.electron-mode
+  .has-active-editor
+  > :is(
+    .canvas,
+    .task-desk,
+    .materials-view,
+    .environment-view,
+    .local-runs-view,
+    .artifact-library,
+    .web-workbench,
+    .browser-workspace,
+    .comments-page,
+    .desktop-trash
+  ) {
+  visibility: hidden;
+}
+
+/* Primary pages share the workspace bounds. Editors cover their originating list. */
+.electron-mode
+  .desktop-shell
+  > :is(
+    .full-view,
+    .task-desk,
+    .materials-view,
+    .environment-view,
+    .local-runs-view,
+    .artifact-library,
+    .web-workbench,
+    .browser-workspace,
+    .comments-page,
+    .desktop-trash
+  ) {
+  position: absolute;
+  inset: var(--workspace-header-height) 0 0 var(--sidebar-width);
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  background: var(--paper);
+  box-shadow: none;
+  backdrop-filter: none;
+  z-index: 20;
+  color: var(--ink);
+}
+.electron-mode .desktop-shell > .full-view {
+  z-index: 32;
+  min-width: 0;
+  overflow: hidden;
+}
+.electron-mode .desktop-shell :is(.file-browser, .desktop-collection) {
+  inset: 0;
+  width: auto;
+  max-width: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--paper);
+  backdrop-filter: none;
+  z-index: 24;
+}
+.electron-mode
+  .desktop-shell
+  :is(
+    .full-view > header,
+    .section-header,
+    .task-header,
+    .file-browser > header,
+    .desktop-collection > header,
+    .desktop-trash > header,
+    .ww-header,
+    .comments-page > header
+  ) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 58px;
+  height: auto;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  flex-shrink: 0;
+}
+.electron-mode
+  .desktop-shell
+  :is(
+    .section-header,
+    .task-header,
+    .file-browser > header,
+    .desktop-collection > header,
+    .desktop-trash > header
+  )
+  strong {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.electron-mode .desktop-shell :is(.full-view > header, .section-header, .task-header) button {
+  min-height: 30px;
+  padding: 5px 10px;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+}
+.electron-mode .full-view > header > strong {
+  font-size: var(--fs-md);
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.electron-mode .full-view > header > span {
+  margin-left: 0;
+  margin-right: auto;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.electron-mode .full-view > header {
+  position: relative;
+  z-index: 4;
+}
+.electron-mode .full-view .file-actions-popover > button {
+  min-width: 30px;
+  padding: 5px;
+  border: 0;
+  background: transparent;
+}
+.electron-mode .full-view .file-actions-popover .desk-popover-panel {
+  width: 210px;
+  top: calc(100% + 8px);
+}
+.electron-mode .full-view > footer {
+  padding: 7px 20px;
+  font-size: var(--fs-xs);
+  border-top: 1px solid var(--line);
+  background: var(--surface-subtle);
+}
+.electron-mode .desktop-shell > .banner {
+  position: absolute;
+  top: 60px;
+  left: calc(var(--sidebar-width) + 18px);
+  right: 18px;
+  z-index: 66;
+  max-height: 100px;
+  overflow: auto;
+  box-shadow: var(--shadow);
+  border-radius: var(--r-md);
+}
+.electron-mode .desktop-shell > .banner ~ .banner {
+  top: 110px;
+}
+.electron-mode .desktop-shell > .connection-recovery {
+  z-index: 49;
+}
+.electron-mode .file-browser .folder-contents {
+  padding: 16px 24px;
+}
+.electron-mode .file-browser :is(.folder-breadcrumb, .folder-create, .folder-actions) {
+  padding-inline: 24px;
+}
+.electron-mode .file-browser :is(.folder-create, .folder-search) input {
+  max-width: 340px;
+}
+.electron-mode .file-browser :is(.folder-file, .folder-row) {
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+}
+.electron-mode .file-browser > footer {
+  padding: 10px 24px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.electron-mode .desktop-collection .collection-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  align-content: start;
+  gap: 10px;
+  padding: 24px;
+  overflow: auto;
+}
+.electron-mode .desktop-collection .collection-items > article {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 12px;
+}
+.electron-mode .desktop-collection .collection-empty {
+  flex: 1;
+  justify-content: center;
+}
+.electron-mode .desktop-trash > header h2 {
+  font-size: var(--fs-xl);
+}
+.electron-mode .desktop-trash-list {
+  padding: 20px 24px;
+}
+
+/* Context tools remain beside materials, without becoming another application. */
+.electron-mode .desktop-tool-library {
+  top: 54px;
+  bottom: 0;
+  left: var(--sidebar-width);
+  width: 320px;
+  max-width: calc(100% - var(--sidebar-width) - 120px);
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: 6px 0 18px #20202606;
+  z-index: 26;
+}
+.electron-mode .history {
+  top: 54px;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-height: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-left: 1px solid var(--line);
+  z-index: 26;
+}
+.electron-mode .comments-drawer:not(.comments-page) {
+  top: 54px;
+  bottom: 0;
+  right: 0;
+  width: min(360px, calc(100vw - var(--workspace-nav-width)));
+  border: 0;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: -6px 0 20px #20202608;
+  z-index: 70;
+}
+.electron-mode .comments-drawer > header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  gap: 9px;
+}
+.electron-mode .comments-drawer-title h2 {
+  font-size: var(--fs-lg);
+}
+.electron-mode .comments-header-symbol {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-md);
+}
+.electron-mode .comments-toolbar {
+  padding: 12px 18px;
+}
+.electron-mode .comments-page .comments-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 24px;
+}
+.electron-mode .comments-page .comments-tabs {
+  min-width: 300px;
+}
+.electron-mode .comments-page .comments-filter-row {
+  margin: 0;
+  flex: 1;
+}
+.electron-mode .comments-page .comments-scroll {
+  padding: 24px;
+}
+.electron-mode .comments-page .comments-thread-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+.electron-mode .comments-page .comments-thread-detail {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.electron-mode .comments-page .comments-empty {
+  min-height: 280px;
+}
+.electron-mode .comments-page .comments-composer {
+  width: 100%;
+  padding: 14px max(24px, calc((100% - 820px) / 2));
+  background: var(--surface-subtle);
+}
+.electron-mode .comments-composer textarea {
+  min-height: 66px;
+  max-height: 140px;
+}
+.electron-mode .comments-footer-note {
+  padding-bottom: 9px;
+}
+
+/* Web sources have a clear starting action and an optional task inspector. */
+.electron-mode .web-workbench {
+  --ww-ink: var(--ink);
+  --ww-muted: var(--muted);
+  --ww-line: var(--line);
+  --ww-blue: var(--accent);
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  container-type: inline-size;
+  container-name: webspace;
+}
+.electron-mode .ww-header {
+  padding: 12px 20px;
+}
+.electron-mode .ww-brand {
+  gap: 0;
+}
+.electron-mode .ww-brand > span {
+  display: none;
+}
+.electron-mode .ww-brand strong {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.electron-mode .ww-brand small {
+  font-size: var(--fs-xs);
+  letter-spacing: 0;
+  margin-top: 2px;
+  color: var(--muted);
+}
+.electron-mode .ww-header-status {
+  font-size: var(--fs-xs);
+  margin-right: 0;
+}
+.electron-mode .ww-layout {
+  grid-template-columns: 200px minmax(0, 1fr);
+}
+.electron-mode .ww-sidebar {
+  background: var(--surface-subtle);
+  border-color: var(--line);
+  padding: 16px 12px;
+}
+.electron-mode .ww-sidebar .ww-search {
+  margin-bottom: 8px;
+  background: var(--paper);
+  border-color: var(--line);
+}
+.electron-mode .ww-sidebar .ww-nav button {
+  min-height: 32px;
+  padding: 6px 9px;
+  color: var(--muted);
+}
+.electron-mode .ww-sidebar .ww-nav button.active {
+  background: var(--surface-2);
+  color: var(--accent);
+}
+.electron-mode .ww-section-title {
+  margin-top: 12px;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.electron-mode .ww-site-icon {
+  width: 26px;
+  height: 26px;
+  font-size: var(--fs-sm);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--muted);
+}
+.electron-mode .web-workbench .ww-bookmark {
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px;
+  border-radius: var(--r-sm);
+}
+.electron-mode .ww-bookmark strong {
+  color: var(--ink-2);
+}
+.electron-mode .ww-bookmark small {
+  color: var(--muted);
+}
+.electron-mode .web-workbench .ww-design-entry {
+  background: var(--paper);
+  border-color: var(--line);
+  border-radius: var(--r-md);
+  color: var(--muted);
+  padding: 10px;
+}
+.electron-mode .ww-tabs {
+  min-height: 38px;
+  background: var(--surface-subtle);
+  border-color: var(--line);
+  padding-left: 12px;
+}
+.electron-mode .ww-tab {
+  height: 32px;
+  border-radius: 6px 6px 0 0;
+}
+.electron-mode .ww-address {
+  padding: 10px 16px;
+  border-color: var(--line);
+  gap: 7px;
+}
+.electron-mode .ww-address > div {
+  background: var(--surface);
+  border-color: var(--line);
+}
+.electron-mode .ww-address input {
+  font-size: var(--fs-sm);
+}
+.electron-mode .ww-address > div > span {
+  display: none;
+}
+.electron-mode .ww-page-header {
+  padding: 20px 24px 14px;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--paper);
+}
+.electron-mode .ww-page-header h1 {
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.3px;
+  margin: 4px 0;
+  line-height: 1.4;
+}
+.electron-mode .ww-eyebrow {
+  font-size: var(--fs-xs);
+  letter-spacing: 0;
+}
+.electron-mode .ww-content-toolbar {
+  padding: 10px 20px;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--paper);
+  border-color: var(--line);
+}
+.electron-mode .ww-capture-controls {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.electron-mode .ww-capture-controls select {
+  max-width: 200px;
+}
+.electron-mode .ww-work-area {
+  grid-template-columns: minmax(0, 1fr) 290px;
+}
+.electron-mode .ww-work-area.is-inspector-hidden {
+  grid-template-columns: minmax(0, 1fr);
+}
+.electron-mode .ww-inspector[hidden] {
+  display: none;
+}
+.electron-mode .ww-inspector {
+  background: var(--surface-subtle);
+  border-color: var(--line);
+}
+.electron-mode .ww-snapshot-banner {
+  background: var(--surface-subtle);
+  color: var(--muted);
+}
+.electron-mode .ww-reader {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 32px 56px;
+}
+.electron-mode .ww-reader h2 {
+  font-size: var(--fs-2xl);
+  color: var(--ink);
+}
+.electron-mode .ww-reader pre {
+  font-size: var(--fs-lg);
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+.electron-mode .web-workbench .ww-empty {
+  min-height: 230px;
+  padding: 40px 24px;
+  flex: 1;
+  gap: 0;
+  color: var(--muted);
+}
+.electron-mode .ww-empty > span {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  color: #8b9bb4;
+  margin-bottom: 20px;
+}
+.electron-mode .ww-empty h3 {
+  font-size: var(--fs-xl);
+  color: var(--ink-2);
+  font-weight: 550;
+  margin: 0 0 10px;
+}
+.electron-mode .ww-empty p {
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+  max-width: 390px;
+  margin: 0;
+}
+.electron-mode .ww-empty-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  max-width: 100%;
+}
+.electron-mode .web-workbench.is-empty .ww-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+.electron-mode .web-workbench.is-empty .ww-sidebar {
+  display: none;
+}
+.electron-mode .web-workbench.is-list-collapsed .ww-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+.electron-mode .web-workbench.is-list-collapsed .ww-sidebar {
+  display: none;
+}
+.electron-mode .ww-list-toggle {
+  color: var(--muted);
+  border-right: 1px solid var(--line);
+  padding-right: 14px;
+  margin-right: 2px;
+}
+.electron-mode .web-workbench.is-empty .ww-empty-actions {
+  flex-direction: column;
+  width: min(480px, 100%);
+  gap: 12px;
+}
+.electron-mode .ww-start-form {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+.electron-mode .ww-start-form input {
+  flex: 1;
+  width: 0;
+  background: transparent;
+  border: 0;
+  padding: 8px 9px;
+  font-size: var(--fs-sm);
+}
+.electron-mode .ww-start-form button {
+  padding: 8px 14px;
+  flex: none;
+}
+.electron-mode .ww-start-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+}
+.electron-mode .ww-start-secondary button {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.electron-mode .ww-feedback {
+  margin: 10px 16px;
+  border-radius: var(--r-md);
+}
+.electron-mode .web-playground {
+  border: 0;
+  border-radius: 0;
+  background: var(--paper);
+}
+.electron-mode .web-playground-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.electron-mode .web-playground-eyebrow {
+  display: none;
+}
+.electron-mode .web-playground-header h2 {
+  font-size: var(--fs-lg);
+  margin: 0 0 4px;
+  letter-spacing: 0;
+}
+.electron-mode .web-playground-header p {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  margin: 0;
+}
+.electron-mode .web-playground-header-actions button {
+  padding: 6px 10px;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+}
+
+/* Native editors retain format tools while sharing the same surrounding frame. */
+.electron-mode .workflow-editor-backdrop {
+  inset: 54px 0 0 var(--workspace-nav-width);
+  padding: 0;
+  background: var(--paper);
+  backdrop-filter: none;
+  z-index: 35;
+  overflow: auto;
+}
+.electron-mode .workflow-editor {
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.electron-mode .workflow-header {
+  min-height: 58px;
+  height: auto;
+  padding: 12px 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--paper);
+}
+.electron-mode .workflow-brand {
+  display: none;
+}
+.electron-mode .workflow-heading strong {
+  font-size: var(--fs-lg);
+}
+.electron-mode .workflow-header-actions {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.electron-mode .workflow-header-actions button {
+  min-height: 30px;
+  padding: 5px 9px;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+}
+.electron-mode .workflow-body {
+  grid-template-columns: 210px minmax(200px, 1fr) 270px;
+  overflow: auto;
+}
+.electron-mode .workflow-library-heading {
+  padding: 0 0 12px;
+}
+.electron-mode .workflow-palette {
+  padding: 14px 12px;
+}
+.electron-mode .full-view :is(.office-editor > header, .native-text-toolbar, .xlsx-toolbar) {
+  padding: 10px 18px;
+  gap: 8px;
+  border-color: var(--line);
+  background: var(--surface-subtle);
+}
+.electron-mode
+  .full-view
+  :is(.office-editor > header > div:first-child, .native-text-toolbar > div:first-child)
+  > strong {
+  display: none;
+}
+.electron-mode .full-view :is(.office-editor > header, .native-text-toolbar) button {
+  padding: 6px 10px;
+  font-size: var(--fs-xs);
+  border-radius: var(--r-sm);
+}
+.electron-mode .native-text-toolbar {
+  flex-wrap: wrap;
+}
+.electron-mode .full-view .office-editor {
+  border-radius: 0;
+}
+
+/* Secondary pages keep their return context; confirmations still block navigation. */
+.electron-mode
+  .desktop-shell
+  > :is(
+    .workspace-manager,
+    .backup-desk,
+    .layout-library,
+    .annotation-recovery-desk,
+    .revision-view,
+    .context-preview
+  ) {
+  inset: 54px 0 0 var(--sidebar-width);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 46;
+  background: var(--paper);
+}
+.electron-mode
+  .desktop-shell
+  > :is(
+    .workspace-manager,
+    .backup-desk,
+    .layout-library,
+    .annotation-recovery-desk,
+    .revision-view,
+    .context-preview
+  )
+  > header {
+  min-height: 58px;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.electron-mode
+  .desktop-shell
+  > :is(.workspace-manager, .backup-desk, .layout-library, .annotation-recovery-desk)
+  h2 {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+.electron-mode .material-import {
+  inset: var(--workspace-header-height, 94px) 0 0 var(--sidebar-width);
+  z-index: 46;
+  background: var(--paper);
+}
+.electron-mode .desktop-shell .desk-popover-panel {
+  border-radius: var(--r-lg);
+  box-shadow: 0 12px 36px #2020261a;
+  border-color: var(--line);
+}
+.electron-mode .desktop-shell .creation-option {
+  padding: 9px 12px;
+}
+.electron-mode .desktop-shell .creation-option strong {
+  font-size: var(--fs-sm);
+}
+.electron-mode .desktop-shell .creation-option small {
+  font-size: var(--fs-xs);
+}
+.electron-mode .desktop-shell .material-glyph {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-md);
+}
+@container workspace (max-width:800px) {
+  .electron-mode .desk-toolbar {
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 100px;
+  }
+  .electron-mode .desk-toolbar-actions .desk-import > span,
+  .electron-mode .creation-popover > button > span {
+    display: none;
+  }
+  .electron-mode .desktop-shell :is(.full-view > header, .section-header, .task-header) {
+    padding: 10px 16px;
+  }
+  .electron-mode .full-view > header > strong {
+    max-width: 180px;
+  }
+  .electron-mode .desktop-collection .collection-items {
+    padding: 16px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@container webspace (max-width:900px) {
+  .electron-mode .ww-layout {
+    grid-template-columns: 170px minmax(0, 1fr);
+  }
+  .electron-mode .ww-header-status {
+    display: none;
+  }
+  .electron-mode .ww-work-area:not(.is-inspector-hidden) {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .electron-mode .ww-work-area:not(.is-inspector-hidden) .ww-reading-area {
+    flex: 1;
+    min-height: 220px;
+  }
+  .electron-mode .ww-inspector {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    max-height: 45%;
+    min-height: 180px;
+  }
+  .electron-mode .ww-page-header {
+    padding: 16px;
+  }
+  .electron-mode .ww-address {
+    flex-wrap: wrap;
+  }
+  .electron-mode .ww-address > div {
+    flex: 1;
+    min-width: 140px;
+  }
+  .electron-mode .ww-reader {
+    padding: 24px 20px;
+  }
+}
+@container webspace (max-width:650px) {
+  .electron-mode .ww-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .electron-mode .ww-sidebar {
+    position: absolute;
+    inset: 58px auto 0 0;
+    width: 210px;
+    z-index: 30;
+    box-shadow: 8px 0 24px #20202614;
+  }
+  .electron-mode .ww-header {
+    padding: 10px 14px;
+  }
+  .electron-mode .ww-brand small,
+  .electron-mode .ww-list-toggle > span {
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .electron-mode .workflow-body {
+    grid-template-columns: 170px minmax(200px, 1fr) 240px;
+  }
+}
+
+/* A single workspace switcher and a quiet, aligned page toolbar. */
+.electron-mode .desk-rail {
+  padding-top: 8px;
+}
+.electron-mode .desktop-shell .desk-rail .workspace-switcher {
+  display: flex;
+  height: 38px;
+  min-height: 38px;
+  padding: 5px 6px;
+  margin-bottom: 9px;
+  gap: 8px;
+  border: 0;
+  border-radius: var(--r-md);
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+}
+.electron-mode .workspace-switcher .desk-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+}
+.electron-mode .workspace-switcher strong {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+.electron-mode .workspace-switcher > .desk-icon {
+  width: 12px !important;
+  height: 12px !important;
+  color: var(--muted);
+  flex: none;
+}
+.electron-mode .desktop-shell.sidebar-collapsed .workspace-switcher {
+  width: 44px;
+  padding: 5px;
+  justify-content: center;
+}
+.electron-mode .sidebar-collapsed .workspace-switcher > .desk-icon,
+.electron-mode .sidebar-collapsed .workspace-switcher strong {
+  display: none;
+}
+.electron-mode .desktop-shell.sidebar-collapsed .workspace-switcher > .desk-logo {
+  display: flex;
+}
+.electron-mode .desk-toolbar {
+  gap: 14px;
+  padding-left: 16px;
+  border-bottom-color: var(--line);
+}
+.electron-mode .sidebar-toggle {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-md);
+  color: var(--muted);
+  transition:
+    background 0.16s,
+    color 0.16s;
+}
+.electron-mode .sidebar-toggle:hover {
+  background: var(--surface);
+  color: var(--ink-2);
+}
+.electron-mode .desk-current-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+.electron-mode .desk-current-page h1 {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--ink);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+}
+.electron-mode .desk-material-count {
+  flex: none;
+  color: var(--muted);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.electron-mode .desk-save-indicator {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #bd985b;
+}
+.electron-mode .desk-toolbar-actions {
+  gap: 7px;
+  flex: none;
+}
+.electron-mode .desktop-shell .desk-toolbar-actions > button,
+.electron-mode .desk-toolbar-actions > .desk-popover > button {
+  height: 32px;
+  min-width: 32px;
+  padding: 6px 10px;
+  border-radius: var(--r-md);
+  font-weight: 500;
+  transition:
+    background 0.16s,
+    color 0.16s;
+}
+.electron-mode .desk-toolbar-actions .desk-icon {
+  width: 16px;
+  height: 16px;
+}
+.electron-mode .desktop-shell .creation-popover > button {
+  background: var(--surface);
+  color: var(--accent);
+  padding-inline: 12px;
+}
+.electron-mode .desktop-shell .creation-popover > button:hover {
+  background: var(--accent-soft);
+}
+.electron-mode .desk-toolbar-actions > .toolbar-more > button {
+  padding: 6px;
+  color: var(--muted);
+}
+.electron-mode .desk-toolbar :is(button):focus-visible,
+.electron-mode .workspace-switcher:focus-visible {
+  outline: 2px solid #8aafe4;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .electron-mode .desk-toolbar button {
+    transition: none;
+  }
+}
+
+/* Object comments stay compact beside the canvas, never fill the full sidebar. */
+.electron-mode .comments-drawer.comments-light:not(.comments-page) {
+  top: 68px;
+  right: 14px;
+  bottom: auto;
+  width: min(336px, calc(100vw - 28px));
+  height: auto;
+  max-height: calc(100vh - 86px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow:
+    0 12px 36px #26375212,
+    0 2px 6px #26375206;
+}
+.electron-mode .comments-drawer.comments-light > header {
+  padding: 12px 14px;
+  min-height: 0;
+  gap: 5px;
+}
+.electron-mode .comments-light .comments-drawer-title h2 {
+  font-size: var(--fs-sm);
+}
+.electron-mode .comments-light .comments-composer textarea {
+  height: 64px;
+  min-height: 64px;
+  max-height: 120px;
+}
+.electron-mode .comments-page.comments-light .comments-empty {
+  min-height: 0;
+  padding: 16px 0;
+}
+.electron-mode .comments-page.comments-light .comments-thread-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.electron-mode .comments-page.comments-light .comments-composer {
+  background: var(--paper);
+  padding: 12px max(20px, calc((100% - 720px) / 2));
+}
+.electron-mode .comments-page.comments-light .comments-thread-detail {
+  max-width: 720px;
+}
+.electron-mode .comments-page.comments-light .comments-options {
+  padding: 10px 24px;
+  justify-content: flex-start;
+}
+.electron-mode .comments-page.comments-light .comments-options label {
+  flex: 0 1 180px;
+}
+
+.electron-mode .desktop-shell > .browser-workspace.browser-floating {
+  position: fixed;
+  inset: auto;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 84px);
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow:
+    0 18px 60px #26375220,
+    0 2px 8px #2637520a;
+  z-index: 38;
+  overflow: hidden;
+}
+/* 0.64.1: one navigation rhythm, one contextual action surface. PC desktop. */
+.electron-mode {
+  --ui-text: var(--ink);
+  --ui-secondary: var(--ink-2);
+  --ui-subtle: var(--muted);
+  --ui-radius: var(--r-lg);
+  --ui-layer-tools: 70;
+  --ui-layer-popover: 90;
+  --workspace-header-height: 44px;
+}
+.electron-mode .desktop-shell .desk-toolbar {
+  height: 44px;
+  min-height: 44px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.electron-mode .desktop-shell:has(> .desktop-tabs-bar) .desk-current-page h1 {
+  display: none;
+}
+.electron-mode .desktop-shell .desk-material-count {
+  font-size: var(--fs-sm);
+  color: var(--ui-secondary);
+}
+.electron-mode .desktop-shell .desktop-tabs-bar {
+  min-height: 36px;
+  padding: 4px 16px;
+  box-sizing: border-box;
+}
+.electron-mode .desktop-shell .desktop-tabs-bar button {
+  font-size: var(--fs-md);
+  padding: 7px 12px;
+}
+.electron-mode .desktop-shell .desk-rail button {
+  font-size: var(--fs-md);
+  min-height: 36px;
+  height: 36px;
+}
+.electron-mode .sidebar-section > summary,
+.electron-mode .sidebar-more-tools > summary {
+  padding: 10px;
+  color: var(--ui-secondary);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  list-style: revert;
+}
+.electron-mode .sidebar-secondary:not([open]) {
+  gap: 0;
+}
+.electron-mode .desk-popover-panel {
+  border-radius: var(--r-lg);
+  box-shadow: 0 12px 36px #26375118;
+  padding: 7px;
+  max-height: 65vh;
+  overflow: auto;
+}
+.electron-mode .desktop-shell .desk-popover-panel button {
+  font-size: var(--fs-md);
+  min-height: 34px;
+}
+.electron-mode .desktop-shell .creation-option small {
+  font-size: var(--fs-sm);
+  color: var(--ui-secondary);
+}
+/* The existing selection controls are portalled into this single dock. */
+.electron-mode .intent-workbench {
+  left: calc(50% + var(--workspace-nav-width) / 2);
+  bottom: 22px;
+  z-index: var(--ui-layer-tools);
+  max-width: calc(100% - var(--workspace-nav-width) - 40px);
+  font-size: var(--fs-md);
+}
+.electron-mode .intent-workbench[hidden] {
+  display: none !important;
+}
+.electron-mode .intent-work-bar {
+  border-radius: var(--r-lg);
+  padding: 5px;
+  gap: 3px;
+  max-width: 100%;
+  box-shadow: 0 6px 24px #26375112;
+}
+.electron-mode .intent-work-bar > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-height: 34px;
+}
+.electron-mode #intent-selection-slot {
+  min-width: 0;
+}
+.electron-mode #intent-selection-slot:empty {
+  display: none;
+}
+.electron-mode #intent-selection-slot .material-dock {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  max-width: none;
+  width: auto;
+  gap: 3px;
+  flex-wrap: nowrap;
+}
+.electron-mode .intent-work-bar:has(.material-dock) > .intent-ask {
+  display: none;
+}
+.electron-mode .intent-work-bar .material-dock button {
+  min-height: 34px;
+  font-size: var(--fs-md);
+  white-space: nowrap;
+}
+.electron-mode .intent-work-bar .material-dock > .dock-divider {
+  height: 20px;
+  margin: 0 3px;
+}
+.electron-mode .intent-work-bar .material-dock > button:not(.reference-button) > span {
+  display: none;
+}
+.electron-mode .intent-work-list {
+  margin-left: auto;
+  font-size: var(--fs-md);
+  max-height: min(55vh, 600px);
+  border-radius: var(--r-lg);
+  box-shadow: 0 12px 36px #26375118;
+}
+.electron-mode .intent-work-list button {
+  min-height: 32px;
+}
+/* Reveal affordances without removing keyboard access or important failures. */
+.electron-mode .object-card .paper-hover-tools,
+.electron-mode .object-card .paper-preview-open,
+.electron-mode .object-caption > .caption-favorite {
+  opacity: 0;
+  pointer-events: none;
+}
+.electron-mode .object-card:is(:hover, :focus-within, .selected) .paper-hover-tools,
+.electron-mode .object-card:is(:hover, :focus-within, .selected) .paper-preview-open,
+.electron-mode .object-card:is(:hover, :focus-within, .selected) .caption-favorite,
+.electron-mode .object-caption > .caption-favorite:focus {
+  opacity: 1;
+  pointer-events: auto;
+}
+.electron-mode .object-caption > .caption-favorite[title*='同步'],
+.electron-mode .object-caption > .caption-favorite[title*='更新结果'],
+.electron-mode .object-caption > .is-favorite {
+  opacity: 1;
+  pointer-events: auto;
+}
+.electron-mode .object-caption .caption-title small {
+  opacity: 0;
+  color: var(--ui-secondary);
+  font-size: var(--fs-sm);
+}
+.electron-mode .object-card:is(:hover, :focus-within, .selected) .caption-title small {
+  opacity: 1;
+}
+.electron-mode .object-caption .caption-title {
+  font-size: var(--fs-md);
+}
+.electron-mode .paper-hover-tools button {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-md);
+}
+.electron-mode .canvas-region-header .canvas-region-actions {
+  opacity: 0;
+  pointer-events: none;
+}
+.electron-mode .canvas-region-header:is(:hover, :focus-within) .canvas-region-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+.electron-mode .canvas-region-header {
+  font-size: var(--fs-md);
+}
+.electron-mode .canvas-region-header small {
+  font-size: var(--fs-sm);
+  color: var(--ui-secondary);
+}
+.electron-mode .canvas-region-header button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Critical feedback stays visible; additional messages remain explicitly discoverable. */
+.electron-mode .desktop-shell > .workbench-feedback {
+  position: relative;
+  inset: auto;
+  flex: none;
+  z-index: 65;
+  max-height: 25vh;
+  overflow: auto;
+  margin: 0;
+  padding: 0 16px;
+  background: var(--paper);
+  box-sizing: border-box;
+}
+.electron-mode .workbench-feedback .banner {
+  position: static;
+  inset: auto;
+  margin: 6px 0;
+  padding: 10px 12px;
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  border-radius: var(--r-md);
+  box-shadow: none;
+  max-height: 160px;
+  overflow: auto;
+}
+.electron-mode .feedback-more > summary {
+  font-size: var(--fs-sm);
+  color: var(--ui-secondary);
+  padding: 7px 4px;
+  cursor: pointer;
+}
+.electron-mode .feedback-more[open] {
+  padding-bottom: 6px;
+}
+.electron-mode .notice-success {
+  background: var(--surface);
+  color: var(--ink-2);
+  border-color: var(--line-strong);
+}
+/* App content is primary; development and settings share a single menu. */
+.electron-mode .app-viewer-bar {
+  min-height: 42px;
+  padding: 4px 16px;
+  gap: 8px;
+}
+.electron-mode .app-viewer-identity strong {
+  font-size: var(--fs-md);
+}
+.electron-mode .app-viewer-bar > button,
+.electron-mode .app-viewer-menu > button {
+  font-size: var(--fs-md);
+  color: var(--ui-secondary);
+  min-height: 32px;
+  border: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.electron-mode .app-viewer-menu .desk-popover-panel {
+  right: 0;
+  left: auto;
+  min-width: 170px;
+  z-index: var(--ui-layer-popover);
+}
+.electron-mode .app-viewer-widgets {
+  font-size: var(--fs-md);
+  background: var(--surface-subtle);
+}
+.electron-mode .app-management-drawer {
+  border-radius: var(--r-lg);
+  box-shadow: 0 16px 56px #23324a24;
+}
+.electron-mode .app-management-content :is(input, select, textarea, button) {
+  font-size: var(--fs-md);
+}
+.electron-mode .app-management-content small {
+  font-size: var(--fs-sm);
+  color: var(--ui-secondary);
+}
+.electron-mode button:focus-visible,
+.electron-mode summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.electron-mode button:disabled {
+  cursor: default;
+}
+.electron-mode .desktop-shell svg {
+  flex-shrink: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .electron-mode
+    :is(.paper-hover-tools, .paper-preview-open, .caption-favorite, .canvas-region-actions) {
+    transition: opacity 0.14s ease;
+  }
+  .electron-mode :is(.desk-rail button, .desktop-tabs button, .intent-work-bar button) {
+    transition:
+      background-color 0.14s ease,
+      color 0.14s ease;
+  }
+  .electron-mode :is(.desk-popover-panel, .app-management-drawer[open]) {
+    animation: ui-surface-in 0.15s ease-out;
+  }
+  @keyframes ui-surface-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+/* Never conceal unresolved data or synchronization warnings. */
+.electron-mode .object-caption .caption-title small.generation-warning {
+  opacity: 1;
+  color: var(--warning);
+}
+.electron-mode .intent-object-status.ready {
+  opacity: 0;
+  pointer-events: none;
+}
+.electron-mode .react-flow__node:is(:hover, :focus-within, .selected) .intent-object-status.ready {
+  opacity: 1;
+  pointer-events: auto;
+}
+.electron-mode .sidebar-secondary > summary,
+.electron-mode .sidebar-more-tools > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+.electron-mode .sidebar-collapsed :is(.sidebar-secondary, .sidebar-more-tools) > summary > span {
+  display: none;
+}
+.electron-mode .sidebar-secondary > summary::after,
+.electron-mode .sidebar-more-tools > summary::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  background: var(--muted);
+  -webkit-mask: var(--chevron-mask) center/contain no-repeat;
+  mask: var(--chevron-mask) center/contain no-repeat;
+  transform: rotate(-90deg);
+  transition: transform 0.15s var(--ease);
+}
+.electron-mode .sidebar-secondary[open] > summary::after,
+.electron-mode .sidebar-more-tools[open] > summary::after {
+  transform: none;
+}
+.electron-mode .sidebar-collapsed :is(.sidebar-secondary, .sidebar-more-tools) > summary::after {
+  display: none;
+}
+.electron-mode .app-loading {
+  flex: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  color: var(--ui-secondary);
+  font-size: var(--fs-md);
+  background: var(--surface-subtle);
+}
+.electron-mode .app-loading svg {
+  width: 32px;
+  height: 32px;
+  color: var(--muted);
+}
+/* Use one disclosure arrow; remove the older toolbox prefix. */
+.electron-mode .desk-rail :is(.sidebar-more-tools, .sidebar-secondary) > summary::before {
+  content: none;
+  display: none;
+  margin: 0;
+}
+.electron-mode
+  .desk-rail
+  :is(.sidebar-more-tools, .sidebar-secondary)
+  > summary::-webkit-details-marker {
+  display: none;
+}
+.electron-mode .desk-rail :is(.sidebar-more-tools, .sidebar-secondary) > summary::marker {
+  content: '';
+}
+.electron-mode .desk-rail :is(.sidebar-more-tools, .sidebar-secondary) > summary {
+  padding: 10px;
+  gap: 8px;
+  min-height: 36px;
+  text-align: left;
+}
+.electron-mode .desk-rail :is(.sidebar-more-tools, .sidebar-secondary) > summary::after {
+  content: '›';
+  transform: rotate(0);
+  margin-left: auto;
+  width: 12px;
+  text-align: center;
+}
+.electron-mode .desk-rail :is(.sidebar-more-tools, .sidebar-secondary)[open] > summary::after {
+  transform: rotate(90deg);
+}
+.electron-mode .desk-rail :is(.sidebar-more-tools, .sidebar-secondary) > button {
+  padding-left: 10px;
+}
+.electron-mode
+  .sidebar-collapsed
+  .desk-rail
+  :is(.sidebar-more-tools, .sidebar-secondary)
+  > summary::after {
+  display: none;
+}
+
+/* Frequent actions stay one click away; the selection determines the useful controls. */
+.electron-mode .intent-work-bar {
+  padding: 5px 7px;
+  gap: 5px;
+  border-radius: var(--r-md);
+  box-shadow: none;
+  background: var(--paper, var(--paper));
+}
+.electron-mode .intent-work-bar .material-dock > .selection-list-popover {
+  min-width: 0;
+  margin-right: 5px;
+  padding-right: 5px;
+  border-right: 1px solid var(--line);
+}
+.electron-mode .selection-list-popover > button strong {
+  max-width: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+.selection-count {
+  display: none;
+}
+.electron-mode .intent-work-bar .material-dock > button:not(.reference-button) > span {
+  display: inline;
+}
+.electron-mode .intent-work-bar .material-dock > .reference-button {
+  border-radius: var(--r-sm);
+  height: 32px;
+  padding: 5px 12px;
+  font-size: var(--fs-sm);
+}
+.electron-mode .intent-work-bar .material-dock > .desk-popover > button,
+.electron-mode .intent-work-bar .material-dock > button {
+  border-radius: var(--r-sm);
+  min-height: 32px;
+  font-size: var(--fs-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.electron-mode .intent-work-bar .material-dock > .delete-materials {
+  width: 32px;
+  padding: 6px;
+  margin-left: 3px;
+}
+.electron-mode .intent-work-bar .material-dock > .delete-materials:hover:enabled {
+  color: var(--danger);
+  background: var(--surface);
+}
+.electron-mode .intent-records-menu > button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 6px;
+  border-radius: var(--r-sm);
+}
+.electron-mode .intent-records-menu .desk-popover-panel {
+  top: auto;
+  bottom: calc(100% + 12px);
+  right: 0;
+  left: auto;
+  min-width: 180px;
+}
+.electron-mode .intent-records-menu .desk-popover-panel button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+}
+.intent-attention-count {
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border-radius: var(--r-sm);
+  background: var(--warning-soft);
+  color: var(--warning);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 950px) {
+  .electron-mode .selection-list-popover > button strong,
+  .electron-mode .selection-list-popover > button > svg:first-child {
+    display: none;
+  }
+  .electron-mode .selection-count {
+    display: inline;
+    font-size: var(--fs-sm);
+  }
+  .electron-mode .intent-work-bar {
+    gap: 2px;
+    padding: 5px;
+  }
+  .electron-mode .intent-work-bar .material-dock > .selection-list-popover {
+    padding-right: 3px;
+    margin-right: 2px;
+  }
+  .electron-mode .intent-work-bar .material-dock > .reference-button {
+    padding: 5px 8px;
+  }
+  .electron-mode .intent-work-bar .material-dock > .reference-button svg {
+    display: none;
+  }
+  .electron-mode
+    .intent-work-bar
+    .material-dock
+    > button:is(.selection-preview, .selection-rename, .selection-group)
+    > span {
+    display: none;
+  }
+}
+
+.electron-mode .material-dock > .selection-popover > button > span {
+  display: inline;
+}
+.electron-mode .material-dock > :is(.selection-more, .selection-arrange) > .desk-popover-panel {
+  left: auto;
+  right: 0;
+  width: 210px;
+}
+
+@media (max-width: 560px) {
+  .electron-mode .intent-work-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .electron-mode #intent-selection-slot {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,132 @@
+/* Shared design tokens for the shell and the panel. Existing names (--accent, --ink, --line...) stay valid. */
+:root {
+  --font:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI',
+    sans-serif;
+  --font-mono: 'Cascadia Code', Consolas, 'SFMono-Regular', monospace;
+  --accent: #1a6ad6;
+  --accent-hover: #155bbb;
+  --accent-soft: #eef4fc;
+  --accent-line: #bcd4f5;
+  --on-accent: #fff;
+  --ink: #27272a;
+  --ink-2: #46464d;
+  --muted: #6e6e76;
+  --faint: #8a8a92;
+  --line: #e9e9ec;
+  --line-strong: #d9d9de;
+  --paper: #fff;
+  --surface-subtle: #fafafa;
+  --surface: #f5f5f7;
+  --surface-2: #ededf0;
+  --hover: #0000000a;
+  --canvas: #fcfdff;
+  --canvas-dot: #d6dde7;
+  --sidebar: #f7f7f8;
+  --glass: #ffffffeb;
+  --scrim: #17233440;
+  --success: #18804f;
+  --success-soft: #eaf7ef;
+  --warning: #9a5f22;
+  --warning-soft: #fff5e8;
+  --warning-line: #ecd2b4;
+  --danger: #c4342f;
+  --danger-soft: #fff0ee;
+  --danger-line: #f1c6c1;
+  --info: var(--accent);
+  --info-soft: var(--accent-soft);
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-md: 13px;
+  --fs-lg: 14px;
+  --fs-xl: 16px;
+  --fs-2xl: 20px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --ctl-sm: 28px;
+  --ctl-md: 36px;
+  --shadow: 0 4px 16px #202b3c09, 0 1px 3px #202b3c04;
+  --shadow-raised: 0 18px 60px #202b3c16, 0 2px 8px #202b3c08;
+  --focus-ring: 0 0 0 3px #1a6ad633;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-theme='dark'],
+.theme-dark {
+  --accent: #4a90f0;
+  --accent-hover: #6aa5f5;
+  --accent-soft: #263a57;
+  --accent-line: #3d5d8c;
+  --on-accent: #fff;
+  --ink: #e5e9f0;
+  --ink-2: #c3ccd8;
+  --muted: #9aa5b5;
+  --faint: #6f7a8a;
+  --line: #353c47;
+  --line-strong: #46505e;
+  --paper: #242a33;
+  --surface-subtle: #272d37;
+  --surface: #2d343f;
+  --surface-2: #343c48;
+  --hover: #ffffff0d;
+  --canvas: #1c222b;
+  --canvas-dot: #39414e;
+  --sidebar: #262d38;
+  --glass: #2b323fed;
+  --scrim: #0009;
+  --success: #5cc68f;
+  --success-soft: #23382e;
+  --warning: #e0b07a;
+  --warning-soft: #3b3227;
+  --warning-line: #5e4c36;
+  --danger: #f08a80;
+  --danger-soft: #3f2a29;
+  --danger-line: #63403d;
+  --shadow: 0 4px 16px #0002;
+  --shadow-raised: 0 18px 60px #0005;
+  --focus-ring: 0 0 0 3px #4a90f044;
+  color-scheme: dark;
+}
+/* Disclosure and pop-up indicators drawn as vectors: the ⌄ glyph sits on the baseline in CJK fonts. */
+:root {
+  --chevron-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M1.2 2.8 4 5.6l2.8-2.8' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.ui-chevron {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-left: 4px;
+  vertical-align: middle;
+  background: currentColor;
+  opacity: 0.75;
+  -webkit-mask: var(--chevron-mask) center/contain no-repeat;
+  mask: var(--chevron-mask) center/contain no-repeat;
+  transition: transform 0.15s var(--ease);
+}
+.ui-chevron.up {
+  transform: rotate(180deg);
+}
+.ui-chevron.right {
+  transform: rotate(-90deg);
+}
+.ui-chevron.updown {
+  width: 8px;
+  height: 11px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 11'%3E%3Cpath d='M1.5 4 4 1.5 6.5 4M1.5 7 4 9.5 6.5 7' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 11'%3E%3Cpath d='M1.5 4 4 1.5 6.5 4M1.5 7 4 9.5 6.5 7' fill='none' stroke='black' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-chevron {
+    transition: none;
+  }
+}

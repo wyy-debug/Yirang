@@ -1,0 +1,167 @@
+.composer-preferences {
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+.composer-permission {
+  border: 0;
+  background: transparent;
+  color: var(--muted, var(--muted));
+  font: inherit;
+  font-size: var(--fs-xs);
+  padding: 3px 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.composer-permission:hover {
+  color: var(--accent);
+}
+.composer-permission[data-attention='true'] {
+  color: var(--warning);
+}
+.composer-permission:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.permission-popover {
+  max-height: min(660px, calc(100vh - 24px));
+  overflow: auto;
+}
+.permission-popover .composer-popover-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.permission-current {
+  font-weight: 600;
+  margin: 0;
+}
+.permission-path,
+.permission-reason {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 8px 0;
+}
+.permission-popover details {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.permission-popover summary {
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.permission-history {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.permission-history h3 {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.permission-history details {
+  padding: 7px 0;
+}
+.permission-history details[data-status='denied'] > summary,
+.permission-history details[data-status='warning'] > summary {
+  color: var(--warning);
+}
+
+/* Same grouped-list language as the model popover, kept small: two choices do not need a large card. */
+.permission-popover {
+  padding: 6px !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--line);
+  box-shadow:
+    0 10px 30px #1b26381f,
+    0 1px 3px #1b263814;
+}
+.permission-popover > header {
+  display: block;
+  margin: 2px 6px 5px;
+  user-select: none;
+}
+.permission-popover > header strong {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--muted);
+}
+.permission-popover .composer-popover-body {
+  gap: 4px;
+}
+.permission-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.permission-popover .permission-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  width: 100%;
+  min-height: 40px;
+  padding: 5px 10px !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  color: var(--ink-2) !important;
+}
+.permission-popover .permission-option + .permission-option {
+  box-shadow: inset 0 1px 0 var(--line);
+}
+.permission-popover .permission-option:hover:not(:disabled) {
+  background: var(--hover) !important;
+}
+.permission-popover .permission-option[aria-pressed='true'] strong {
+  color: var(--accent);
+}
+.permission-option-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+.permission-option-copy strong {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.permission-option-copy small {
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--muted);
+}
+.permission-option-check {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.4 4.8 9 10 3' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.4 4.8 9 10 3' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center/contain no-repeat;
+  visibility: hidden;
+}
+.permission-option[aria-pressed='true'] .permission-option-check {
+  visibility: visible;
+}
+.permission-popover .permission-status {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  margin: 0 6px;
+}
+.permission-popover button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.composer-popover:focus,
+.composer-popover:focus-visible {
+  outline: none;
+}
